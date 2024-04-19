@@ -24,7 +24,7 @@ const genreFiltering = {
   condition: genreFilter,
 };
 
-const HomePage = (props) => {
+const HomePage = (props: any) => {
   const { data, error, isLoading, isError } = useQuery<DiscoverMovies, Error>("discover", getMovies);
   const { filterValues, setFilterValues, filterFunction } = useFiltering(
     [],
