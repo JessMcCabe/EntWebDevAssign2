@@ -11,6 +11,8 @@ import Menu from "@mui/material/Menu";
 import { useNavigate } from "react-router-dom";
 import { useTheme } from "@mui/material/styles";
 import useMediaQuery from "@mui/material/useMediaQuery";
+import { ThemeProvider, createTheme } from '@mui/material/styles';
+
 
 const styles = {
   title: {
@@ -22,13 +24,19 @@ const styles = {
   // offset: theme.mixins.toolbar,
 };
 
+
+const darkTheme = createTheme({
+  palette: {
+    mode: 'dark',
+  },
+});
 const Offset = styled("div")(({ theme }) => theme.mixins.toolbar);
 
 const SiteHeader: React.FC = () => {
   const navigate = useNavigate();
   const [anchorEl, setAnchorEl] = useState<HTMLButtonElement|null>(null);
   const open = Boolean(anchorEl);
-  const theme = useTheme();
+  const theme =darkTheme
   const isMobile = useMediaQuery(theme.breakpoints.down("lg"));
 
   const menuOptions = [
@@ -47,15 +55,18 @@ const SiteHeader: React.FC = () => {
     setAnchorEl(event.currentTarget);
   };
 
+
+  
   return (
     <>
-      <AppBar sx={styles.appbar} position="fixed" elevation={0} color="primary">
+    <ThemeProvider theme={darkTheme}>
+      <AppBar sx={styles.appbar} position="fixed" elevation={10} color="primary">
         <Toolbar>
-          <Typography variant="h4" sx={styles.title}>
+          <Typography variant="body1" sx={styles.title}>
             TMDB Client
           </Typography>
           <Typography variant="h6" sx={styles.title}>
-            All you ever wanted to know about Movies!
+            Welcome to the home of YOUR Movies!
           </Typography>
           {isMobile ? (
             <>
@@ -65,7 +76,7 @@ const SiteHeader: React.FC = () => {
                 aria-haspopup="true"
                 onClick={handleMenu}
                 color="inherit"
-                size="large"
+                size="medium"
               >
                 <MenuIcon />
               </IconButton>
@@ -73,13 +84,13 @@ const SiteHeader: React.FC = () => {
                 id="menu-appbar"
                 anchorEl={anchorEl}
                 anchorOrigin={{
-                  vertical: "top",
-                  horizontal: "right",
+                  vertical: "bottom",
+                  horizontal: "center",
                 }}
                 keepMounted
                 transformOrigin={{
-                  vertical: "top",
-                  horizontal: "right",
+                  vertical: "bottom",
+                  horizontal: "center",
                 }}
                 open={open}
                 onClose={() => setAnchorEl(null)}
@@ -109,10 +120,12 @@ const SiteHeader: React.FC = () => {
           )}
         </Toolbar>
       </AppBar>
-      <Offset />
+     <Offset/>
 
       {/* <div className={classes.offset} /> */}
+      </ThemeProvider>
     </>
+   
   );
 };
 
