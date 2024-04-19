@@ -12,7 +12,7 @@ import { useNavigate } from "react-router-dom";
 import { useTheme } from "@mui/material/styles";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import { ThemeProvider, createTheme } from '@mui/material/styles';
-
+import { NavLink } from 'react-router-dom'
 
 const styles = {
   title: {
@@ -38,6 +38,12 @@ const SiteHeader: React.FC = () => {
   const open = Boolean(anchorEl);
   const theme =darkTheme
   const isMobile = useMediaQuery(theme.breakpoints.down("lg"));
+  const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
+    setAnchorEl(event.currentTarget);
+  };
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
 
   const menuOptions = [
     { label: "Home", path: "/" },
@@ -68,56 +74,36 @@ const SiteHeader: React.FC = () => {
           <Typography variant="h6" sx={styles.title}>
             Welcome to the home of YOUR Movies!
           </Typography>
-          {isMobile ? (
-            <>
-              <IconButton
-                aria-label="menu"
-                aria-controls="menu-appbar"
-                aria-haspopup="true"
-                onClick={handleMenu}
-                color="inherit"
-                size="medium"
-              >
-                <MenuIcon />
-              </IconButton>
-              <Menu
-                id="menu-appbar"
-                anchorEl={anchorEl}
-                anchorOrigin={{
-                  vertical: "bottom",
-                  horizontal: "center",
-                }}
-                keepMounted
-                transformOrigin={{
-                  vertical: "bottom",
-                  horizontal: "center",
-                }}
-                open={open}
-                onClose={() => setAnchorEl(null)}
-              >
-                {menuOptions.map((opt) => (
-                  <MenuItem
-                    key={opt.label}
-                    onClick={() => handleMenuSelect(opt.path)}
-                  >
-                    {opt.label}
-                  </MenuItem>
-                ))}
-              </Menu>
-            </>
-          ) : (
-            <>
-              {menuOptions.map((opt) => (
-                <Button
-                  key={opt.label}
-                  color="inherit"
-                  onClick={() => handleMenuSelect(opt.path)}
-                >
-                  {opt.label}
-                </Button>
-              ))}
-            </>
-          )}
+          <div>
+      <Button
+        id="basic-button"
+        aria-controls={open ? 'basic-menu' : undefined}
+        aria-haspopup="true"
+        aria-expanded={open ? 'true' : undefined}
+        onClick={handleClick}
+      >
+        Movies
+      </Button>
+      <Menu
+        id="basic-menu"
+        anchorEl={anchorEl}
+        open={open}
+        onClose={handleClose}
+        MenuListProps={{
+          'aria-labelledby': 'basic-button',
+        }}
+      >
+        <MenuItem onClick={handleClose} >
+              <NavLink to="/"style={{color: 'white', textDecoration: 'none'}}>Movies Home </NavLink>
+         </MenuItem>
+        <MenuItem onClick={handleClose} >
+              <NavLink to="/movies/upcoming"style={{color: 'white', textDecoration: 'none'}}>Upcoming Movies </NavLink>
+         </MenuItem>
+         <MenuItem onClick={handleClose} >
+              <NavLink to="/movies/favourites"style={{color: 'white', textDecoration: 'none'}}>Favourite Movies </NavLink>
+         </MenuItem>
+      </Menu>
+    </div>
         </Toolbar>
       </AppBar>
      <Offset/>
