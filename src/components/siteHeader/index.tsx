@@ -42,6 +42,9 @@ const SiteHeader: React.FC = () => {
   const [anchorElTVShows, setAnchorElTVShows] = useState<HTMLButtonElement|null>(null);
   const openTVShows = Boolean(anchorElTVShows);
 
+  const [anchorElPeople, setAnchorElPeople] = useState<HTMLButtonElement|null>(null);
+  const openPeople = Boolean(anchorElPeople);
+
 
   const theme =darkTheme
   const isMobile = useMediaQuery(theme.breakpoints.down("lg"));
@@ -65,6 +68,14 @@ const SiteHeader: React.FC = () => {
   };
   const handleCloseTVShows = () => {
     setAnchorElTVShows(null);
+  };
+
+
+  const handleClickPeople= (event: React.MouseEvent<HTMLButtonElement>) => {
+    setAnchorElPeople(event.currentTarget);
+  };
+  const handleClosePeople = () => {
+    setAnchorElPeople(null);
   };
 
  /* const menuOptions = [
@@ -188,6 +199,40 @@ const SiteHeader: React.FC = () => {
       
       </Menu>
     </div>
+
+
+
+    <div>
+      <Button
+        id="people-button"
+        aria-controls={open2 ? 'people-menu' : undefined}
+        aria-haspopup="true"
+        aria-expanded={openPeople ? 'true' : undefined}
+        onClick={handleClickPeople}
+      >
+        People
+      </Button>
+     
+      <Menu
+        id="people-menu"
+        anchorEl={anchorElPeople}
+        open={openPeople}
+        onClose={handleClosePeople}
+        MenuListProps={{
+          'aria-labelledby': 'people-button',
+        }}
+      >
+        <MenuItem onClick={handleClosePeople} >
+              <NavLink to="/movies/playlist"style={{color: 'white', textDecoration: 'none'}}>Actors </NavLink>
+         </MenuItem>
+         <MenuItem onClick={handleClosePeople} >
+              <NavLink to="/movies/playlist"style={{color: 'white', textDecoration: 'none'}}>Favourite Actors </NavLink>
+         </MenuItem>
+
+      
+      </Menu>
+    </div>
+
     
         </Toolbar>
       </AppBar>
