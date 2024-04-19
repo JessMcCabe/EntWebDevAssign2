@@ -46,8 +46,8 @@ const MovieCard: React.FC<MovieListProps> = (props) => {
  
   return (
     <Card sx={styles.card}>
-      <CardActionArea> {props.action(movie)}
-        <Link to={`/movies/${movie.id}`}>
+      <CardActionArea>
+      <Link to={`/movies/${movie.id}`}>
       <CardHeader
         avatar={
           movie.favourite ? (
@@ -70,8 +70,7 @@ const MovieCard: React.FC<MovieListProps> = (props) => {
             : img
         }
       />
-         </Link>
-         </CardActionArea>
+       </Link>
       <CardContent>
         <Grid container>
           <Grid item xs={6}>
@@ -88,7 +87,7 @@ const MovieCard: React.FC<MovieListProps> = (props) => {
           </Grid>
         </Grid>
       </CardContent>
-      <CardActions disableSpacing>
+      <CardActions >
       {props.action(movie)}
         <Link to={`/movies/${movie.id}`}>
         <Button variant="outlined" size="medium" color="primary">
@@ -96,8 +95,8 @@ const MovieCard: React.FC<MovieListProps> = (props) => {
         </Button>
         </Link>
       </CardActions>
-   
-    
+     
+      </CardActionArea>
     </Card>
   );
 }
