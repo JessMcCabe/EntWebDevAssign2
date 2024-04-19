@@ -188,13 +188,13 @@ const SiteHeader: React.FC = () => {
         }}
       >
          <MenuItem onClick={handleCloseTVShows} >
-              <NavLink to="/"style={{color: 'white', textDecoration: 'none'}}>TV Shows Home </NavLink>
+              <NavLink to="/tvshows"style={{color: 'white', textDecoration: 'none'}}>TV Shows Home </NavLink>
          </MenuItem>
         <MenuItem onClick={handleCloseTVShows} >
-              <NavLink to="/movies/upcoming"style={{color: 'white', textDecoration: 'none'}}>Upcoming TV Shows </NavLink>
+              <NavLink to="/tvshows/upcoming"style={{color: 'white', textDecoration: 'none'}}>Upcoming TV Shows </NavLink>
          </MenuItem>
          <MenuItem onClick={handleCloseTVShows} >
-              <NavLink to="/movies/favourites"style={{color: 'white', textDecoration: 'none'}}>Favourite TV Shows </NavLink>
+              <NavLink to="/tvshows/favourites"style={{color: 'white', textDecoration: 'none'}}>Favourite TV Shows </NavLink>
          </MenuItem>
       
       </Menu>
@@ -223,10 +223,10 @@ const SiteHeader: React.FC = () => {
         }}
       >
         <MenuItem onClick={handleClosePeople} >
-              <NavLink to="/movies/playlist"style={{color: 'white', textDecoration: 'none'}}>Actors </NavLink>
+              <NavLink to="/people"style={{color: 'white', textDecoration: 'none'}}>Actors </NavLink>
          </MenuItem>
          <MenuItem onClick={handleClosePeople} >
-              <NavLink to="/movies/playlist"style={{color: 'white', textDecoration: 'none'}}>Favourite Actors </NavLink>
+              <NavLink to="/people/favourites"style={{color: 'white', textDecoration: 'none'}}>Favourite Actors </NavLink>
          </MenuItem>
 
       
