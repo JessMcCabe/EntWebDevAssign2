@@ -38,6 +38,11 @@ const SiteHeader: React.FC = () => {
   const open1 = Boolean(anchorElM1);
   const [anchorElM2, setAnchorElM2] = useState<HTMLButtonElement|null>(null);
   const open2 = Boolean(anchorElM2);
+
+  const [anchorElTVShows, setAnchorElTVShows] = useState<HTMLButtonElement|null>(null);
+  const openTVShows = Boolean(anchorElTVShows);
+
+
   const theme =darkTheme
   const isMobile = useMediaQuery(theme.breakpoints.down("lg"));
   const handleClickM1 = (event: React.MouseEvent<HTMLButtonElement>) => {
@@ -52,6 +57,14 @@ const SiteHeader: React.FC = () => {
   };
   const handleCloseM2 = () => {
     setAnchorElM2(null);
+  };
+
+
+  const handleClickTVShows= (event: React.MouseEvent<HTMLButtonElement>) => {
+    setAnchorElTVShows(event.currentTarget);
+  };
+  const handleCloseTVShows = () => {
+    setAnchorElTVShows(null);
   };
 
  /* const menuOptions = [
@@ -137,7 +150,40 @@ const SiteHeader: React.FC = () => {
         }}
       >
         <MenuItem onClick={handleCloseM2} >
-              <NavLink to="/movies/playlist"style={{color: 'white', textDecoration: 'none'}}>PlayList 1 </NavLink>
+              <NavLink to="/movies/playlist"style={{color: 'white', textDecoration: 'none'}}>Movie PlayList 1 </NavLink>
+         </MenuItem>
+      
+      </Menu>
+    </div>
+
+    <div>
+      <Button
+        id="tv-button"
+        aria-controls={openTVShows? 'tv-menu' : undefined}
+        aria-haspopup="true"
+        aria-expanded={openTVShows ? 'true' : undefined}
+        onClick={handleClickTVShows}
+      >
+        TV Shows
+      </Button>
+     
+      <Menu
+        id="tv-menu"
+        anchorEl={anchorElTVShows}
+        open={openTVShows}
+        onClose={handleCloseTVShows}
+        MenuListProps={{
+          'aria-labelledby': 'tv-button',
+        }}
+      >
+         <MenuItem onClick={handleCloseTVShows} >
+              <NavLink to="/"style={{color: 'white', textDecoration: 'none'}}>TV Shows Home </NavLink>
+         </MenuItem>
+        <MenuItem onClick={handleCloseTVShows} >
+              <NavLink to="/movies/upcoming"style={{color: 'white', textDecoration: 'none'}}>Upcoming TV Shows </NavLink>
+         </MenuItem>
+         <MenuItem onClick={handleCloseTVShows} >
+              <NavLink to="/movies/favourites"style={{color: 'white', textDecoration: 'none'}}>Favourite TV Shows </NavLink>
          </MenuItem>
       
       </Menu>
