@@ -14,6 +14,7 @@ import img from '../../images/film-poster-placeholder.png';
 //import { BaseMovie } from "../../types/interfaces"; 
 import { Link } from "react-router-dom";
 import Avatar from "@mui/material/Avatar";
+import { CardActionArea } from '@mui/material';
 
 import { MoviesContext } from "../../contexts/moviesContext";
 import { ListedMovie } from "../../types/interfaces";
@@ -45,6 +46,8 @@ const MovieCard: React.FC<MovieListProps> = (props) => {
  
   return (
     <Card sx={styles.card}>
+      <CardActionArea> {props.action(movie)}
+        <Link to={`/movies/${movie.id}`}>
       <CardHeader
         avatar={
           movie.favourite ? (
@@ -67,6 +70,8 @@ const MovieCard: React.FC<MovieListProps> = (props) => {
             : img
         }
       />
+         </Link>
+         </CardActionArea>
       <CardContent>
         <Grid container>
           <Grid item xs={6}>
@@ -91,6 +96,8 @@ const MovieCard: React.FC<MovieListProps> = (props) => {
         </Button>
         </Link>
       </CardActions>
+   
+    
     </Card>
   );
 }
