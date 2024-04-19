@@ -14,6 +14,9 @@ import { getGenres } from "../../api/tmdb-api";
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
 
+import { useQuery } from "react-query";
+import Spinner from '../spinner'
+
 const styles = {
   root: {
     maxWidth: 345,
@@ -33,15 +36,19 @@ interface FilterMoviesCardProps {
   genreFilter: string;
 }
 const FilterMoviesCard: React.FC<FilterMoviesCardProps> = (props) => {
-  const [genres, setGenres] = useState([{ id: '0', name: "All" }])
- 
-  useEffect(() => {
-    getGenres().then((allGenres) => {
-      setGenres([genres[0], ...allGenres]);
-    });
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [])
- 
+  const { data, error, isLoading, isError } = useQuery<GenreData, Error>("genres", getGenres);
+
+  if (isLoading) {
+    return <Spinner />;
+  }
+  if (isError) {
+    return <h1>{(error as Error).message}</h1>;
+  }
+  const genres = data?.genres || [];
+  if (genres[0].name !== "All") {
+    genres.unshift({ id: "0", name: "All" });
+  }
+
   const handleChange = (e: SelectChangeEvent, type: FilterOption, value: string) => {
     e.preventDefault()
     props.onUserInput(type, value)
@@ -54,6 +61,7 @@ const FilterMoviesCard: React.FC<FilterMoviesCardProps> = (props) => {
   const handleGenreChange = (e: SelectChangeEvent) => {
     handleChange(e, "genre", e.target.value)
   };
+
   return (
     <>
     <Card sx={styles.root} variant="outlined">
