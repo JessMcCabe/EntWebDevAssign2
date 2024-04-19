@@ -33,19 +33,28 @@ const darkTheme = createTheme({
 const Offset = styled("div")(({ theme }) => theme.mixins.toolbar);
 
 const SiteHeader: React.FC = () => {
-  const navigate = useNavigate();
-  const [anchorEl, setAnchorEl] = useState<HTMLButtonElement|null>(null);
-  const open = Boolean(anchorEl);
+ // const navigate = useNavigate();
+  const [anchorElM1, setAnchorElM1] = useState<HTMLButtonElement|null>(null);
+  const open1 = Boolean(anchorElM1);
+  const [anchorElM2, setAnchorElM2] = useState<HTMLButtonElement|null>(null);
+  const open2 = Boolean(anchorElM2);
   const theme =darkTheme
   const isMobile = useMediaQuery(theme.breakpoints.down("lg"));
-  const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
-    setAnchorEl(event.currentTarget);
+  const handleClickM1 = (event: React.MouseEvent<HTMLButtonElement>) => {
+    setAnchorElM1(event.currentTarget);
   };
-  const handleClose = () => {
-    setAnchorEl(null);
+  const handleCloseM1 = () => {
+    setAnchorElM1(null);
   };
 
-  const menuOptions = [
+  const handleClickM2 = (event: React.MouseEvent<HTMLButtonElement>) => {
+    setAnchorElM2(event.currentTarget);
+  };
+  const handleCloseM2 = () => {
+    setAnchorElM2(null);
+  };
+
+ /* const menuOptions = [
     { label: "Home", path: "/" },
     { label: "Upcoming Movies", path: "/movies/upcoming" },
     { label: "Favorites", path: "/movies/favourites" },
@@ -60,7 +69,7 @@ const SiteHeader: React.FC = () => {
   const handleMenu = (event: MouseEvent<HTMLButtonElement>) => {
     setAnchorEl(event.currentTarget);
   };
-
+*/
 
   
   return (
@@ -77,33 +86,63 @@ const SiteHeader: React.FC = () => {
           <div>
       <Button
         id="basic-button"
-        aria-controls={open ? 'basic-menu' : undefined}
+        aria-controls={open1 ? 'basic-menu' : undefined}
         aria-haspopup="true"
-        aria-expanded={open ? 'true' : undefined}
-        onClick={handleClick}
+        aria-expanded={open1 ? 'true' : undefined}
+        onClick={handleClickM1}
       >
         Movies
       </Button>
+     
       <Menu
         id="basic-menu"
-        anchorEl={anchorEl}
-        open={open}
-        onClose={handleClose}
+        anchorEl={anchorElM1}
+        open={open1}
+        onClose={handleCloseM1}
         MenuListProps={{
           'aria-labelledby': 'basic-button',
         }}
       >
-        <MenuItem onClick={handleClose} >
+        <MenuItem onClick={handleCloseM1} >
               <NavLink to="/"style={{color: 'white', textDecoration: 'none'}}>Movies Home </NavLink>
          </MenuItem>
-        <MenuItem onClick={handleClose} >
+        <MenuItem onClick={handleCloseM1} >
               <NavLink to="/movies/upcoming"style={{color: 'white', textDecoration: 'none'}}>Upcoming Movies </NavLink>
          </MenuItem>
-         <MenuItem onClick={handleClose} >
+         <MenuItem onClick={handleCloseM1} >
               <NavLink to="/movies/favourites"style={{color: 'white', textDecoration: 'none'}}>Favourite Movies </NavLink>
          </MenuItem>
       </Menu>
     </div>
+
+
+    <div>
+      <Button
+        id="play-button"
+        aria-controls={open2 ? 'play-menu' : undefined}
+        aria-haspopup="true"
+        aria-expanded={open2 ? 'true' : undefined}
+        onClick={handleClickM2}
+      >
+        PlayList
+      </Button>
+     
+      <Menu
+        id="play-menu"
+        anchorEl={anchorElM2}
+        open={open2}
+        onClose={handleCloseM2}
+        MenuListProps={{
+          'aria-labelledby': 'play-button',
+        }}
+      >
+        <MenuItem onClick={handleCloseM2} >
+              <NavLink to="/movies/playlist"style={{color: 'white', textDecoration: 'none'}}>PlayList 1 </NavLink>
+         </MenuItem>
+      
+      </Menu>
+    </div>
+    
         </Toolbar>
       </AppBar>
      <Offset/>
