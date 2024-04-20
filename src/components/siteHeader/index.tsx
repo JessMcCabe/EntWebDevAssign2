@@ -107,7 +107,8 @@ const SiteHeader: React.FC = () => {
           <Typography variant="h6" sx={styles.title}>
             Welcome to the home of YOUR Movies!
           </Typography>
-          <div>
+          
+    <div>
       <Button
         id="basic-button"
         aria-controls={open1 ? 'basic-menu' : undefined}
@@ -188,7 +189,7 @@ const SiteHeader: React.FC = () => {
         }}
       >
          <MenuItem onClick={handleCloseTVShows} >
-              <NavLink to="/tvshows"style={{color: 'white', textDecoration: 'none'}}>TV Shows Home </NavLink>
+              <NavLink to="/tvshows/"style={{color: 'white', textDecoration: 'none'}}>TV Shows Home </NavLink>
          </MenuItem>
         <MenuItem onClick={handleCloseTVShows} >
               <NavLink to="/tvshows/upcoming"style={{color: 'white', textDecoration: 'none'}}>Upcoming TV Shows </NavLink>
@@ -205,7 +206,7 @@ const SiteHeader: React.FC = () => {
     <div>
       <Button
         id="people-button"
-        aria-controls={open2 ? 'people-menu' : undefined}
+        aria-controls={openPeople ? 'people-menu' : undefined}
         aria-haspopup="true"
         aria-expanded={openPeople ? 'true' : undefined}
         onClick={handleClickPeople}

@@ -1,5 +1,5 @@
 import React, { useState, useEffect, ChangeEvent } from "react";
-import { FilterOptionTVShow } from "../../types/interfaces"
+import { FilterOptionTVShow, GenreData } from "../../types/interfaces"
 import { SelectChangeEvent } from "@mui/material";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
@@ -32,7 +32,7 @@ const styles = {
 
 interface FilterTVShowsCardProps {
   onUserInput: (f: FilterOptionTVShow, s: string)  => void; 
-  titleFilter: string;
+  nameFilter: string;
   genreFilter: string;
 }
 const FilterTVShowsCard: React.FC<FilterTVShowsCardProps> = (props) => {
@@ -75,7 +75,7 @@ const FilterTVShowsCard: React.FC<FilterTVShowsCardProps> = (props) => {
       id="filled-search"
       label="Search field"
       type="search"
-      value={props.titleFilter}
+      value={props.nameFilter}
       variant="filled"
       onChange={handleTextChange}
     />

@@ -4,7 +4,7 @@ import Fab from "@mui/material/Fab";
 import Drawer from "@mui/material/Drawer";
 import { BaseTVShow } from "../../types/interfaces";
 
-export const titleFilter = function (tvShow: BaseTVShow, value: string) {
+export const nameFilter = function (tvShow: BaseTVShow, value: string) {
   return tvShow.name.toLowerCase().search(value.toLowerCase()) !== -1;
 };
 
@@ -27,12 +27,12 @@ const styles = {
 
 interface TVShowFilterUIProps {
   onFilterValuesChange: (f: string, s: string) => void;
-  titleFilter: string;
+  nameFilter: string;
   genreFilter: string;
 }
 
 
-const TVShowFilterUI: React.FC<TVShowFilterUIProps> = ({ onFilterValuesChange, titleFilter, genreFilter }) => {
+const TVShowFilterUI: React.FC<TVShowFilterUIProps> = ({ onFilterValuesChange, nameFilter, genreFilter }) => {
   const [drawerOpen, setDrawerOpen] = useState(false);
 
   return (
@@ -52,7 +52,7 @@ const TVShowFilterUI: React.FC<TVShowFilterUIProps> = ({ onFilterValuesChange, t
       >
         <FilterTVShowsCard
           onUserInput={onFilterValuesChange}
-          titleFilter={titleFilter}
+          nameFilter={nameFilter}
           genreFilter={genreFilter}
         />
       </Drawer>

@@ -5,11 +5,10 @@ import Paper from "@mui/material/Paper";
 import IconButton from "@mui/material/IconButton";
 import Typography from "@mui/material/Typography";
 import HomeIcon from "@mui/icons-material/Home";
-import { MovieT } from "../../types/interfaces"; 
 import Avatar from "@mui/material/Avatar";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import CardHeader from "@mui/material/CardHeader";
-import { ListedMovie } from "../types/../interfaces";
+import { BaseTVShow } from "../../types/interfaces";
 
 
 const styles = {
@@ -29,11 +28,11 @@ const styles = {
 
 
 
-const MovieHeader: React.FC<MovieT> = (props) => {
+const TVShowHeader: React.FC<BaseTVShow> = (props) => {
   
     const favourites =    localStorage.getItem('favourites')
     
-  //TODO: Check if current movie is in favourites
+  //TODO: Check if current TV Show is in favourites
   
  console.log(favourites)
   return (
@@ -62,7 +61,7 @@ const MovieHeader: React.FC<MovieT> = (props) => {
           
      
       <Typography variant="h4" component="h3">
-        {props.title}{"   "}
+        {props.name}{"   "}
         <a href={props.homepage}>
           <HomeIcon color="primary"  fontSize="large"/>
         </a>
@@ -76,4 +75,4 @@ const MovieHeader: React.FC<MovieT> = (props) => {
   );
 };
 
-export default MovieHeader;
+export default TVShowHeader;

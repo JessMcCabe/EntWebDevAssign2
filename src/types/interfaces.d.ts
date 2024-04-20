@@ -62,15 +62,15 @@ export interface MovieListPageTemplateProps {
 
 export interface Review{
   id: string;
-  content: string
-  author: string
+  content: string;
+  author: string;
 }
 
 
 export interface GenreData {
   genres: {
     id: string;
-    name: string
+    name: string;
   }[];
 }
 
@@ -82,11 +82,11 @@ interface DiscoverMovies {
 }
 
 export interface Review {
-  author: string,
-  content: string,
-  agree: boolean,
-  rating: number,
-  movieId: number,
+  author: string;
+  content: string;
+  agree: boolean;
+  rating: number;
+  movieId: number;
 }
 
 interface UpcomingMovies {
@@ -98,20 +98,22 @@ interface UpcomingMovies {
 
 
 export interface BaseTVShow {
-  adult: boolean,
-  backdrop_path: string,
-  genre_ids:number[],
-  id: number,
-  origin_country: string[],
-  original_language: string,
-  original_name: string,
-  overview: string,
-  popularity: number,
-  poster_path: string,
-  first_air_date: string,
-  name: string,
-  vote_average: number
-  vote_count: number,
+  adult: boolean;
+  backdrop_path: string;
+  genre_ids:number[];
+  homepage: string | undefined;
+  tagline: string;
+  id: number;
+  origin_country: string[];
+  original_language: string;
+  original_name: string;
+  overview: string;
+  popularity: number;
+  poster_path: string;
+  first_air_date: string;
+  name: string;
+  vote_average: number;
+  vote_count: number;
   favourite?: boolean;
   playList?: boolean;
 }
@@ -119,34 +121,34 @@ export interface BaseTVShow {
 
 export interface knownFor
 {
-  backdrop_path: string,
-  id: number,
-  original_title: string,
-  overview:string,
-  poster_path: string,
-  media_type: string,
-  adult: boolean,
-  title: string,
-  original_language:string,
-  genre_ids: number[],
-  popularity: number,
-  release_date: string,
-  video: boolean,
-  vote_average: number,
-  vote_count: number
+  backdrop_path: string;
+  id: number;
+  original_title: string;
+  overview:string;
+  poster_path: string;
+  media_type: string;
+  adult: boolean;
+  title: string;
+  original_language:string;
+  genre_ids: number[];
+  popularity: number;
+  release_date: string;
+  video: boolean;
+  vote_average: number;
+  vote_count: number;
 }
 
 export interface BasePerson
 {
-  adult: boolean,
-  gender: number ,
-  id: number,
-  known_for_department: string,
-  name: string,
-  original_name: string,
-  popularity: number,
-  profile_path: string,
-  known_for: knownFor[]// could this be tv show either?
+  adult: boolean;
+  gender: number ;
+  id: number;
+  known_for_department: string;
+  name: string;
+  original_name: string;
+  popularity: number;
+  profile_path: string;
+  known_for: knownFor[];// could this be tv show either?
 }
 
 
@@ -161,4 +163,15 @@ interface DiscoverTVShows {
   total_pages: number;
   total_results: number;
   results: BaseTVShow[];
+}
+
+
+export interface TVShowImage {
+  file_path: string;
+  aspect_ratio?: number; //some props are optional...
+  height?: number;
+  iso_639_1?: string;
+  vote_average?: number;
+  vote_count?: number;
+  width?: number;
 }

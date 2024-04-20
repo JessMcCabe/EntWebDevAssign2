@@ -3,7 +3,7 @@ import PageTemplate from "../components/templateTVShowListPage";
 import { getTVShows } from "../api/tmdb-api";
 import useFiltering from "../hooks/useFiltering";
 import TVShowFilterUI, {
-  titleFilter,
+  nameFilter,
   genreFilter,
 } from "../components/tvShowFilterUI";
 import { DiscoverTVShows } from "../types/interfaces";
@@ -13,10 +13,10 @@ import Spinner from "../components/spinner";
 import AddToFavouritesIcon from '../components/cardIcons/addToFavouriteTVShow'
 
 
-const titleFiltering = {
-  name: "title",
+const nameFiltering = {
+  name: "name",
   value: "",
-  condition: titleFilter,
+  condition: nameFilter,
 };
 const genreFiltering = {
   name: "genre",
@@ -28,7 +28,7 @@ const HomePage = (props: any) => {
   const { data, error, isLoading, isError } = useQuery<DiscoverTVShows, Error>("discover", getTVShows);
   const { filterValues, setFilterValues, filterFunction } = useFiltering(
     [],
-    [titleFiltering, genreFiltering]
+    [nameFiltering, genreFiltering]
   );
 
   if (isLoading) {
@@ -65,7 +65,7 @@ const HomePage = (props: any) => {
       />
       <TVShowFilterUI
         onFilterValuesChange={changeFilterValues}
-        titleFilter={filterValues[0].value}
+        nameFilter={filterValues[0].value}
         genreFilter={filterValues[1].value}
       />
     </>
