@@ -30,7 +30,7 @@ export const Basic: Story = {
 };
 Basic.storyName = "Default";
 
-const sampleNoPoster = { ...SampleTVShow, poster_path: undefined };
+const sampleNoPoster = { ...SampleTVShow, poster_path: "../images/film-poster-placeholder.png" };
 export const Exceptional: Story = {
   args: {
     tvShow: sampleNoPoster,
