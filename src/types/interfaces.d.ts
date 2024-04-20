@@ -175,3 +175,9 @@ export interface TVShowImage {
   vote_count?: number;
   width?: number;
 }
+
+export interface TVShowT extends BaseTVShow {
+  genres: {
+    id: number;
+    name: string;
+  }[]}

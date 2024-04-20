@@ -5,6 +5,7 @@ import HomePage from "./pages/homePage";
 import MoviePage from "./pages/movieDetailsPage";
 import TVShow from "./pages/tvShowDetailsPage";
 import FavouriteMoviesPage from "./pages/favouriteMoviesPage"; // NEW
+import FavouriteTVShowsPage from "./pages/favouriteTVShowsPage"; 
 import MovieReviewPage from "./pages/movieReviewPage";
 import SiteHeader from './components/siteHeader'
 import { QueryClientProvider, QueryClient } from "react-query";
@@ -42,6 +43,7 @@ const App = () => {
         <Route path="/movies/:id" element={<MoviePage />} />
         <Route path="/tvshows/" element={<TVShowsHomePage />} />
         <Route path="/tvshows/:id" element={<TVShow />} />
+        <Route path="/tvshows/favourites" element={<FavouriteTVShowsPage />} />
         <Route path="/" element={<HomePage />} />
         <Route path="*" element={<Navigate to="/" />} />
         </Routes>
