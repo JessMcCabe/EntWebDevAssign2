@@ -51,6 +51,8 @@ export interface ListedMovie extends BaseMovie {
 
 export type FilterOption = "title" | "genre";
 
+export type FilterOptionTVShow = "name" | "genre";
+
 
 export interface MovieListPageTemplateProps {
   movies: ListedMovie[];
@@ -145,4 +147,18 @@ export interface BasePerson
   popularity: number,
   profile_path: string,
   known_for: knownFor[]// could this be tv show either?
+}
+
+
+export interface TVShowListPageTemplateProps {
+  tvShows: BaseTVShow[];
+  title: string;
+  action: (m: BaseTVShow) => React.ReactNode;
+}
+
+interface DiscoverTVShows {
+  page: number;	
+  total_pages: number;
+  total_results: number;
+  results: BaseTVShow[];
 }
