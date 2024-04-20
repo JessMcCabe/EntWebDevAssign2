@@ -1,17 +1,17 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import MovieListHeader from "../components/headerTVShowList";
+import TVShowListHeader from "../components/headerTVShowList";
 import { MemoryRouter } from "react-router";
 import TVShowContextProvider from "../contexts/tvShowsContext";
 import React from 'react';
 
 const meta = {
     title: 'TV Shows/Header',
-    component: MovieListHeader,
+    component: TVShowListHeader,
     decorators: [
       (Story) => <MemoryRouter initialEntries={["/"]}>{Story()}</MemoryRouter>,
       (Story) => <TVShowContextProvider>{Story()}</TVShowContextProvider>,
     ],
-  } satisfies Meta<typeof MovieListHeader>;
+  } satisfies Meta<typeof TVShowListHeader>;
   
   export default meta;
 
