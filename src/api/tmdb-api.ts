@@ -123,7 +123,7 @@ export const getTVShowReviews = (id: string | number) => {
 
 export const getTVShow = (id: string) => {
   return fetch(
-    `https://api.themoviedb.org/3/movie/${id}?api_key=${import.meta.env.VITE_TMDB_KEY}`
+    `https://api.themoviedb.org/3/tv/${id}?api_key=${import.meta.env.VITE_TMDB_KEY}`
   ).then((response) => {
     if (!response.ok) {
       throw new Error(`Failed to get tv show data. Response status: ${response.status}`);
