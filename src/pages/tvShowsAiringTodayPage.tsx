@@ -6,7 +6,7 @@ import TVShowFilterUI, {
   nameFilter,
   genreFilter,
 } from "../components/tvShowFilterUI";
-import { DiscoverTVShows } from "../types/interfaces";
+import { AiringTodayTVShows } from "../types/interfaces";
 import { BaseTVShow } from "../types/interfaces";
 import { useQuery } from "react-query";
 import Spinner from "../components/spinner";
@@ -25,7 +25,7 @@ const genreFiltering = {
 };
 
 const TVShowsAiringToday = (props: any) => {
-  const { data, error, isLoading, isError } = useQuery<DiscoverTVShows, Error>("discover", getTVShowsAiringToday);
+  const { data, error, isLoading, isError } = useQuery<AiringTodayTVShows, Error>("airing", getTVShowsAiringToday);
   const { filterValues, setFilterValues, filterFunction } = useFiltering(
     [],
     [nameFiltering, genreFiltering]

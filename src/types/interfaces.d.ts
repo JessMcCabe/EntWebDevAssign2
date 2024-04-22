@@ -182,3 +182,9 @@ export interface TVShowT extends BaseTVShow {
     name: string;
   }[]}
 
+  interface AiringTodayTVShows {
+    page: number;	
+    total_pages: number;
+    total_results: number;
+    results: BaseTVShow[];
+  }

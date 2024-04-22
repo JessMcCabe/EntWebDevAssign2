@@ -9,7 +9,7 @@ import { MovieT } from "../../types/interfaces";
 import Avatar from "@mui/material/Avatar";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import CardHeader from "@mui/material/CardHeader";
-import { ListedMovie } from "../types/../interfaces";
+import { ListedMovie } from "../../types//interfaces";
 
 
 const styles = {
