@@ -195,7 +195,7 @@ const SiteHeader: React.FC = () => {
               <NavLink to="/tvshows/today"style={{color: 'white', textDecoration: 'none'}}>Today's TV Shows </NavLink>
          </MenuItem>
          <MenuItem onClick={handleCloseTVShows} >
-              <NavLink to="/tvshows/today"style={{color: 'white', textDecoration: 'none'}}>Favourite TV Shows </NavLink>
+              <NavLink to="/tvshows/"style={{color: 'white', textDecoration: 'none'}}>Favourite TV Shows </NavLink>
          </MenuItem>
       
       </Menu>

@@ -137,7 +137,7 @@ export const getTVShow = (id: string) => {
 
 export const getTVShowsAiringToday = () => {
   return fetch(
-    `https://api.themoviedb.org/3/discover/tv?api_key=${import.meta.env.VITE_TMDB_KEY}&language=en-US&include_adult=false&include_video=false&page=1`
+    `https://api.themoviedb.org/3/tv/airing_today?api_key=${import.meta.env.VITE_TMDB_KEY}&language=en-US&page=1`
   )
   .then((response) => {
     
