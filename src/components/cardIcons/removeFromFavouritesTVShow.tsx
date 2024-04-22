@@ -2,9 +2,9 @@ import React, { MouseEvent, useContext } from "react";
 import IconButton from "@mui/material/IconButton";
 import DeleteIcon from "@mui/icons-material/Delete";
 import { TVShowContext } from "../../contexts/tvShowsContext";
-import {BaseTVShow} from "../../types/interfaces";
+import {TVShowT} from "../../types/interfaces";
 
-const RemoveFromFavouritesIcon: React.FC<BaseTVShow> = (tvShow) => {
+const RemoveFromFavouritesIcon: React.FC<TVShowT> = (tvShow) => {
   const context = useContext(TVShowContext);
 
   const onUserRequest = (e: MouseEvent<HTMLButtonElement>) => {

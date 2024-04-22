@@ -9,7 +9,7 @@ import TVShowFilterUI, {
   nameFilter
 } from "../components/tvShowFilterUI";
 import { TVShowT } from "../types/interfaces";
-import RemoveFromFavourites from "../components/cardIcons/removeFromFavouritesTVShow";
+import RemoveFromFavouriteTVShow from "../components/cardIcons/removeFromFavouritesTVShow";
 import WriteReview from "../components/cardIcons/writeReview";
 
 const nameFiltering = {
@@ -73,7 +73,7 @@ const FavouriteTVShowsPage: React.FC = () => {
         action={(tvShow) => {
           return (
             <>
-              <RemoveFromFavourites {...tvShow} />
+              <RemoveFromFavouriteTVShow {...tvShow} />
               <WriteReview {...tvShow} />
             </>
           );
