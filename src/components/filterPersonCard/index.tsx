@@ -1,5 +1,5 @@
 import React, { useState, useEffect, ChangeEvent } from "react";
-import { FilterOptionTVShow, GenreData } from "../../types/interfaces"
+import { FilterOptionPerson, DiscoverPeople } from "../../types/interfaces"
 import { SelectChangeEvent } from "@mui/material";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
@@ -9,7 +9,7 @@ import MenuItem from "@mui/material/MenuItem";
 import TextField from "@mui/material/TextField";
 import FilterAltIcon from '@mui/icons-material/FilterAlt';
 import SortIcon from '@mui/icons-material/Sort';
-import { getGenresTV } from "../../api/tmdb-api";
+import { getPersonFromName,getActors } from "../../api/tmdb-api";
 
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
@@ -30,26 +30,22 @@ const styles = {
   },
 };
 
-interface FilterTVShowsCardProps {
-  onUserInput: (f: FilterOptionTVShow, s: string)  => void; 
+interface FilterPersonCardProps {
+  onUserInput: (f: FilterOptionPerson, s: string)  => void; 
   nameFilter: string;
-  genreFilter: string;
+  //genderFilter: string;
 }
-const FilterTVShowsCard: React.FC<FilterTVShowsCardProps> = (props) => {
-  const { data, error, isLoading, isError } = useQuery<GenreData, Error>("genres", getGenresTV);
-
+const FilterPersonCard: React.FC<FilterPersonCardProps> = (props) => {
+  const { data, error, isLoading, isError } = useQuery<DiscoverPeople, Error>("people", getActors);
   if (isLoading) {
     return <Spinner />;
   }
   if (isError) {
     return <h1>{(error as Error).message}</h1>;
   }
-  const genres = data?.genres || [];
-  if (genres[0].name !== "All") {
-    genres.unshift({ id: "0", name: "All" });
-  }
+  
 
-  const handleChange = (e: SelectChangeEvent, type: FilterOptionTVShow, value: string) => {
+  const handleChange = (e: SelectChangeEvent, type: FilterOptionPerson, value: string) => {
     e.preventDefault()
     props.onUserInput(type, value)
   };
@@ -58,9 +54,7 @@ const FilterTVShowsCard: React.FC<FilterTVShowsCardProps> = (props) => {
     handleChange(e, "name", e.target.value)
   }
 
-  const handleGenreChange = (e: SelectChangeEvent) => {
-    handleChange(e, "genre", e.target.value)
-  };
+ 
 
   return (
     <>
@@ -68,7 +62,7 @@ const FilterTVShowsCard: React.FC<FilterTVShowsCardProps> = (props) => {
       <CardContent>
         <Typography variant="h5" component="h1">
           <FilterAltIcon fontSize="large" />
-          Filter TV Shows.
+          Filter People.
         </Typography>
         <TextField
       sx={styles.formControl}
@@ -79,30 +73,14 @@ const FilterTVShowsCard: React.FC<FilterTVShowsCardProps> = (props) => {
       variant="filled"
       onChange={handleTextChange}
     />
-        <FormControl sx={styles.formControl}>
-          <InputLabel id="genre-label">Genre</InputLabel>
-          <Select
-      labelId="genre-label"
-      id="genre-select"
-      value={props.genreFilter}
-      onChange={handleGenreChange}
-    >
-            {genres.map((genre) => {
-              return (
-                <MenuItem key={genre.id} value={genre.id}>
-                  {genre.name}
-                </MenuItem>
-              );
-            })}
-          </Select>
-        </FormControl>
+ 
       </CardContent>
     </Card>
     <Card sx={styles.root} variant="outlined">
         <CardContent>
           <Typography variant="h5" component="h1">
             <SortIcon fontSize="large" />
-            Sort the movies.
+            Sort People.
           </Typography>
         </CardContent>
       </Card>
@@ -110,4 +88,4 @@ const FilterTVShowsCard: React.FC<FilterTVShowsCardProps> = (props) => {
   );
 }
 
-export default FilterTVShowsCard;
+export default FilterPersonCard;

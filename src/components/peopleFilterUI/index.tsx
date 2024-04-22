@@ -1,17 +1,14 @@
 import React, { useState } from "react";
-import FilterCard from "../filterMoviesCard";
+import FilterPeopleCard from "../filterPersonCard";
 import Fab from "@mui/material/Fab";
 import Drawer from "@mui/material/Drawer";
-import { ListedMovie } from "../../types/interfaces";
+import { BasePerson } from "../../types/interfaces";
 
-export const titleFilter = function (movie: ListedMovie, value: string) {
-  return movie.title.toLowerCase().search(value.toLowerCase()) !== -1;
+export const nameFilter = function (person: BasePerson, value: string) {
+  return person.name.toLowerCase().search(value.toLowerCase()) !== -1;
 };
 
-export const genreFilter = function (movie: ListedMovie, value: string) {
-  const genreId = Number(value);
-  return genreId > 0 ? movie.genre_ids.includes(genreId) : true;
-};
+
 
 const styles = {
   root: {
@@ -25,14 +22,14 @@ const styles = {
   },
 };
 
-interface MovieFilterUIProps {
+interface PersonFilterUIProps {
   onFilterValuesChange: (f: string, s: string) => void;
-  titleFilter: string;
-  genreFilter: string;
+  nameFilter: string;
+ 
 }
 
 
-const MovieFilterUI: React.FC<MovieFilterUIProps> = ({ onFilterValuesChange, titleFilter, genreFilter }) => {
+const TVShowFilterUI: React.FC<PersonFilterUIProps> = ({ onFilterValuesChange, nameFilter }) => {
   const [drawerOpen, setDrawerOpen] = useState(false);
 
   return (
@@ -50,14 +47,14 @@ const MovieFilterUI: React.FC<MovieFilterUIProps> = ({ onFilterValuesChange, tit
         open={drawerOpen}
         onClose={() => setDrawerOpen(false)}
       >
-        <FilterCard
+        <FilterPeopleCard
           onUserInput={onFilterValuesChange}
-          titleFilter={titleFilter}
-          genreFilter={genreFilter}
+          nameFilter={nameFilter}
+          //genreFilter={genreFilter}
         />
       </Drawer>
     </>
   );
 };
 
-export default MovieFilterUI;
+export default TVShowFilterUI;

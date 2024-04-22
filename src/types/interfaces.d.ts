@@ -53,6 +53,8 @@ export type FilterOption = "title" | "genre";
 
 export type FilterOptionTVShow = "name" | "genre";
 
+export type FilterOptionPerson = "name" | "gender";
+
 
 export interface MovieListPageTemplateProps {
   movies: ListedMovie[];
@@ -188,3 +190,32 @@ export interface TVShowT extends BaseTVShow {
     total_results: number;
     results: BaseTVShow[];
   }
+
+
+  export interface PeopleListPageTemplateProps {
+    people: BasePerson[];
+    title: string;
+    action: (m: BasePerson) => React.ReactNode;
+  }
+
+
+  export interface GenderData {
+    genders: {
+      id: string;
+      name: string;
+    }[];
+  }
+
+  export interface PersonT extends BasePerson {
+    gender: {
+      id: number;
+      name: string;
+    }[]}
+
+
+    interface DiscoverPeople {
+      page: number;	
+      total_pages: number;
+      total_results: number;
+      results: BasePerson[];
+    }
