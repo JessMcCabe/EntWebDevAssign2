@@ -219,3 +219,26 @@ export interface TVShowT extends BaseTVShow {
       total_results: number;
       results: BasePerson[];
     }
+
+
+
+
+export interface PersonT extends BasePerson
+{
+  biography: string;
+  also_known_as: string[];
+  birthday: string ;
+  place_of_birth: string;
+  favourite: boolean
+}
+
+
+export interface PeopleImage {
+  file_path: string;
+  aspect_ratio?: number; //some props are optional...
+  height?: number;
+  iso_639_1?: string;
+  vote_average?: number;
+  vote_count?: number;
+  width?: number;
+}

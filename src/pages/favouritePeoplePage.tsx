@@ -8,7 +8,7 @@ import useFiltering from "../hooks/useFiltering";
 import PeopleFilterUI, {
   nameFilter
 } from "../components/peopleFilterUI";
-import { BasePerson } from "../types/interfaces";
+import { PersonT } from "../types/interfaces";
 import RemoveFromFavourites from "../components/cardIcons/removeFromFavouritesPerson";
 
 
