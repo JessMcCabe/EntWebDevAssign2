@@ -7,11 +7,13 @@ import MoviePage from "./pages/movieDetailsPage";
 import TVShow from "./pages/tvShowDetailsPage";
 import FavouriteMoviesPage from "./pages/favouriteMoviesPage"; // NEW
 import FavouriteTVShowsPage from "./pages/favouriteTVShowsPage"; 
+import FavouritePeoplePage from "./pages/favouritePeoplePage";
 import MovieReviewPage from "./pages/movieReviewPage";
 import SiteHeader from './components/siteHeader'
 import { QueryClientProvider, QueryClient } from "react-query";
 import { ReactQueryDevtools } from 'react-query/devtools';
 import MoviesContextProvider from "./contexts/moviesContext";
+import PeopleContextProvider from "./contexts/peopleContext";
 import AddMovieReviewPage from './pages/addMovieReviewPage'
 import UpcomingMoviesPage from './pages/upcomingMoviesPage'
 import TVShowsAiringTodayPage from './pages/tvShowsAiringTodayPage'
@@ -36,6 +38,7 @@ const App = () => {
       <SiteHeader />
         <MoviesContextProvider>
         <TVShowContextProvider>
+        <PeopleContextProvider>
         <Routes>
         <Route path="/reviews/form" element={<AddMovieReviewPage/>} />
         <Route path="/reviews/:id" element={<MovieReviewPage/>} />
@@ -48,9 +51,11 @@ const App = () => {
         <Route path="/tvshows/favourites/" element={<FavouriteTVShowsPage />} />
         <Route path="/tvshows/today" element={<TVShowsAiringTodayPage />} />
         <Route path="/people" element={<PeopleHomePage />} />
+        <Route path="/people/favourites" element={<FavouritePeoplePage />} />
         <Route path="/" element={<HomePage />} />
         <Route path="*" element={<Navigate to="/" />} />
         </Routes>
+        </PeopleContextProvider>
         </TVShowContextProvider>
         </MoviesContextProvider>
         <SiteHeader />
