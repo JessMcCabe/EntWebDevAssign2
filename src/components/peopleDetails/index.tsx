@@ -1,14 +1,11 @@
 import React, { useState } from "react";
 import Chip from "@mui/material/Chip";
 import Paper from "@mui/material/Paper";
-import AccessTimeIcon from "@mui/icons-material/AccessTime";
-import MonetizationIcon from "@mui/icons-material/MonetizationOn";
 import StarRate from "@mui/icons-material/StarRate";
 import Typography from "@mui/material/Typography";
 import { PersonT } from "../../types/interfaces";
-import NavigationIcon from "@mui/icons-material/Navigation";
-import Fab from "@mui/material/Fab";
-import Drawer from "@mui/material/Drawer";
+
+
 
 
 const styles = {
@@ -34,7 +31,6 @@ const styles = {
 const PersonDetails: React.FC<PersonT> = (props) => {
   const person=props;
   
-
     return (
         <>
             <Typography variant="h5" component="h3">

@@ -16,7 +16,7 @@ const styles = {
         justifyContent: "space-around",
     },
     gridListTile: {
-        width: 450,
+        width: 250,
         height: '100vh',
     },
 };
@@ -29,7 +29,7 @@ interface TemplatePeoplePageProps {
 
 const TemplatePeoplePage: React.FC<TemplatePeoplePageProps> = (props) => {
     const { person, children } = props;
-    const { data, error, isLoading, isError } = useQuery<PeopleImage[], Error>(
+    const { data, error, isLoading, isError } = useQuery<PeopleImage, Error>(
         ["images", person.id],
         () => getPersonImages(person.id)
     );
@@ -43,8 +43,8 @@ const TemplatePeoplePage: React.FC<TemplatePeoplePageProps> = (props) => {
 
         ).message}</h1>;
     }
-
-    const images = data as PeopleImage[];
+    console.log(data)
+    const images = data as PeopleImage;
 
     return (
         <>

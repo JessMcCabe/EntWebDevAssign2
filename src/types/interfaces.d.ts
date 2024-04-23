@@ -225,11 +225,13 @@ export interface TVShowT extends BaseTVShow {
 
 export interface PersonT extends BasePerson
 {
+ 
   biography: string;
   also_known_as: string[];
   birthday: string ;
   place_of_birth: string;
   favourite: boolean
+  
 }
 
 

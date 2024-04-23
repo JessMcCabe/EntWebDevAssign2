@@ -8,7 +8,7 @@ import HomeIcon from "@mui/icons-material/Home";
 import Avatar from "@mui/material/Avatar";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import CardHeader from "@mui/material/CardHeader";
-import { PersonT } from "../../types//interfaces";
+import { PersonT } from "../../types/interfaces";
 
 
 const styles = {
