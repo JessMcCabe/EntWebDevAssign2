@@ -83,7 +83,7 @@ const PersonCard: React.FC<PeopleListProps> = (props) => {
       </CardContent>
       <CardActions >
       {props.action(person)}
-        <Link to={`/person/${person.id}`}>
+        <Link to={`/people/${person.id}`}>
         <Button variant="outlined" size="medium" color="primary">
           More Info ...
         </Button>
