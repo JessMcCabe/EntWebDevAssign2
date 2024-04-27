@@ -60,10 +60,10 @@ const PersonDetails: React.FC<PersonT> = (props) => {
                 <Chip label={`Departments: ${person.known_for_department}`} />
             </Paper>
             <Typography variant="h5" component="h3">
-            <Link href={`/people/${person.id}/tvShows`}>View Movies starring {person.name}</Link>
+            <Link href={`/people/${person.id}/movies`}>View Movies starring {person.name}</Link>
             </Typography>
             <Typography variant="h5" component="h3">
-            <Link href={`/people/${person.id}/movies`}>View TV Shows starring {person.name}</Link>
+            <Link href={`/people/${person.id}/tvShows`}>View TV Shows starring {person.name}</Link>
             </Typography>
 
             </ThemeProvider>

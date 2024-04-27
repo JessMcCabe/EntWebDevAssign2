@@ -244,3 +244,18 @@ export interface PeopleImage {
   vote_count?: number;
   width?: number;
 }
+
+
+interface DiscoverPersonMovies {
+  page: number;	
+  total_pages: number;
+  total_results: number;
+  cast: BaseMovie[];
+}
+  interface DiscoverPersonDetails {
+    page: number;	
+    total_pages: number;
+    total_results: number;
+    person: PersonT;
+}
+
