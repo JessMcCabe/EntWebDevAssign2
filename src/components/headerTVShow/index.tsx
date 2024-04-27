@@ -28,6 +28,7 @@ const styles = {
 
 
 
+
 const TVShowHeader: React.FC<BaseTVShow> = (props) => {
   
     const favourites =    localStorage.getItem('favourites')
@@ -36,6 +37,7 @@ const TVShowHeader: React.FC<BaseTVShow> = (props) => {
   
  console.log(favourites)
   return (
+ 
     <Paper component="div" sx={styles.root}>
       
       <IconButton aria-label="go back">
@@ -72,6 +74,7 @@ const TVShowHeader: React.FC<BaseTVShow> = (props) => {
         <ArrowForwardIcon color="primary" fontSize="large" />
       </IconButton>
     </Paper>
+
   );
 };
 

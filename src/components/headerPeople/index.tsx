@@ -65,13 +65,14 @@ const PeopleHeader: React.FC<PersonT> = (props) => {
         <a href={props.profile_path}>
           <HomeIcon color="primary"  fontSize="large"/>
         </a>
-        <br />
-        <span>{`${props.known_for_department}`} </span>
-      </Typography>
+        </Typography>
+        <br></br>
       <IconButton aria-label="go forward">
         <ArrowForwardIcon color="primary" fontSize="large" />
       </IconButton>
+      
     </Paper>
+    
   );
 };
 

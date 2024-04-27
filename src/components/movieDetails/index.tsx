@@ -10,6 +10,8 @@ import NavigationIcon from "@mui/icons-material/Navigation";
 import Fab from "@mui/material/Fab";
 import Drawer from "@mui/material/Drawer";
 import MovieReviews from '../movieReviews'
+import { ThemeProvider, createTheme } from '@mui/material/styles';
+import CssBaseline from '@mui/material/CssBaseline';
 
 const styles = {
     chipSet: {
@@ -30,6 +32,11 @@ const styles = {
       right: 2,
     },
 };
+const darkTheme = createTheme({
+    palette: {
+      mode: 'dark',
+    },
+  });
 
 const MovieDetails: React.FC<MovieT> = (props) => {
   const movie=props;
@@ -37,6 +44,8 @@ const MovieDetails: React.FC<MovieT> = (props) => {
 
     return (
         <>
+        <ThemeProvider theme={darkTheme}>
+      <CssBaseline />
             <Typography variant="h5" component="h3">
                 Overview
             </Typography>
@@ -67,6 +76,7 @@ const MovieDetails: React.FC<MovieT> = (props) => {
                 />
                 <Chip label={`Released: ${movie.release_date}`} />
             </Paper>
+            </ThemeProvider>
             <Fab    
         color="secondary"
         variant="extended"

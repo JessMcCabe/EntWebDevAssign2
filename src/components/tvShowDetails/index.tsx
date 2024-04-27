@@ -10,7 +10,8 @@ import NavigationIcon from "@mui/icons-material/Navigation";
 import Fab from "@mui/material/Fab";
 import Drawer from "@mui/material/Drawer";
 import TVShowReviews from '../tvShowReviews'
-
+import { ThemeProvider, createTheme } from '@mui/material/styles';
+import CssBaseline from '@mui/material/CssBaseline';
 const styles = {
     chipSet: {
         display: "flex",
@@ -30,6 +31,11 @@ const styles = {
       right: 2,
     },
 };
+const darkTheme = createTheme({
+    palette: {
+      mode: 'dark',
+    },
+  });
 
 const TVShowDetails: React.FC<TVShowT> = (props) => {
   const tvShow=props;
@@ -37,6 +43,8 @@ const TVShowDetails: React.FC<TVShowT> = (props) => {
 
     return (
         <>
+          <ThemeProvider theme={darkTheme}>
+      <CssBaseline />
             <Typography variant="h5" component="h3">
                 Overview
             </Typography>
@@ -63,6 +71,7 @@ const TVShowDetails: React.FC<TVShowT> = (props) => {
                 />
                 <Chip label={`Released: ${tvShow.first_air_date}`} />
             </Paper>
+            </ThemeProvider>
             <Fab    
         color="secondary"
         variant="extended"

@@ -4,7 +4,8 @@ import Paper from "@mui/material/Paper";
 import StarRate from "@mui/icons-material/StarRate";
 import Typography from "@mui/material/Typography";
 import { PersonT } from "../../types/interfaces";
-
+import { ThemeProvider, createTheme } from '@mui/material/styles';
+import CssBaseline from '@mui/material/CssBaseline';
 
 
 
@@ -27,21 +28,28 @@ const styles = {
       right: 2,
     },
 };
+const darkTheme = createTheme({
+    palette: {
+      mode: 'dark',
+    },
+  });
 
 const PersonDetails: React.FC<PersonT> = (props) => {
   const person=props;
   
     return (
         <>
+             <ThemeProvider theme={darkTheme}>
+      <CssBaseline />
             <Typography variant="h5" component="h3">
                 About
             </Typography>
 
-            <Typography variant="h6" component="p">
-                {person.name}
+            <Typography variant="body1" component="p">
+                {person.biography}
             </Typography>
 
-           
+            
             <Paper component="ul" sx={styles.chipSet}>
                 
                 <Chip
@@ -49,8 +57,9 @@ const PersonDetails: React.FC<PersonT> = (props) => {
                     label={`${person.popularity} `}
                 />
                 <Chip label={`D.O.B: ${person.birthday}`} />
+                <Chip label={`Departments: ${person.known_for_department}`} />
             </Paper>
-            
+            </ThemeProvider>
     
         </>
     );
