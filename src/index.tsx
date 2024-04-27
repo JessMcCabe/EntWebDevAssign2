@@ -4,6 +4,8 @@ import { BrowserRouter, Route, Navigate, Routes, Link } from "react-router-dom";
 import HomePage from "./pages/homePage";
 import PeopleHomePage from "./pages/peopleHomePage";
 import MoviePage from "./pages/movieDetailsPage";
+import PersonMoviesPage from "./pages/personMoviesPage";
+import PersonTVShowsPage from "./pages/personTVShowsPage";
 import TVShow from "./pages/tvShowDetailsPage";
 import FavouriteMoviesPage from "./pages/favouriteMoviesPage"; // NEW
 import FavouriteTVShowsPage from "./pages/favouriteTVShowsPage"; 
@@ -54,6 +56,8 @@ const App = () => {
         <Route path="/people" element={<PeopleHomePage />} />
         <Route path="/people/favourites" element={<FavouritePeoplePage />} />
         <Route path="/people/:id" element={<PeopleDetailPage />} />
+        <Route path="/people/:id/movies" element={<PersonMoviesPage />} />
+        <Route path="/people/:id/tvShows" element={<PersonTVShowsPage />} />
         <Route path="/" element={<HomePage />} />
         <Route path="*" element={<Navigate to="/" />} />
         </Routes>

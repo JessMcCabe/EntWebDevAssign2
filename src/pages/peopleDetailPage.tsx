@@ -7,12 +7,15 @@ import { getPerson } from '../api/tmdb-api'
 import { useQuery } from "react-query";
 import Spinner from '../components/spinner'
 
+
 const PeopleDetailsPage: React.FC = () => {
   const { id } = useParams();
   const { data: person, error, isLoading, isError } = useQuery<PersonT, Error>(
     ["person", id],
     ()=> getPerson(id||"")
   );
+
+  
 
   if (isLoading) {
     return <Spinner />;

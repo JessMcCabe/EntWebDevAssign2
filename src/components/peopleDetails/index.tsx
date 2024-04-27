@@ -6,7 +6,7 @@ import Typography from "@mui/material/Typography";
 import { PersonT } from "../../types/interfaces";
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
-
+import Link from '@mui/material/Link';
 
 
 const styles = {
@@ -59,6 +59,13 @@ const PersonDetails: React.FC<PersonT> = (props) => {
                 <Chip label={`D.O.B: ${person.birthday}`} />
                 <Chip label={`Departments: ${person.known_for_department}`} />
             </Paper>
+            <Typography variant="h5" component="h3">
+            <Link href={`/people/${person.id}/tvShows`}>View Movies starring {person.name}</Link>
+            </Typography>
+            <Typography variant="h5" component="h3">
+            <Link href={`/people/${person.id}/movies`}>View TV Shows starring {person.name}</Link>
+            </Typography>
+
             </ThemeProvider>
     
         </>
