@@ -1,5 +1,5 @@
 import React, { useContext } from "react"
-import PageTemplate from "../components/templateMovieListPage";
+import PageTemplate from "../components/templateTVShowListPage";
 import { TVShowContext } from "../contexts/tvShowsContext";
 import { useQueries } from "react-query";
 import { getTVShow } from "../api/tmdb-api";
@@ -10,7 +10,7 @@ import TVShowFilterUI, {
 } from "../components/tvShowFilterUI";
 import { TVShowT } from "../types/interfaces";
 import RemoveFromFavouriteTVShow from "../components/cardIcons/removeFromFavouritesTVShow";
-import WriteReview from "../components/cardIcons/writeReview";
+import WriteReviewTVShow from "../components/cardIcons/writeReviewTVShow";
 
 const nameFiltering = {
   name: "name",
@@ -69,12 +69,12 @@ const FavouriteTVShowsPage: React.FC = () => {
     <>
       <PageTemplate
         title="Favourite TV Shows"
-        movies={displayTVShows}
+        tvShows={displayTVShows}
         action={(tvShow) => {
           return (
             <>
               <RemoveFromFavouriteTVShow {...tvShow} />
-              <WriteReview {...tvShow} />
+              <WriteReviewTVShow {...tvShow} />
             </>
           );
         }}

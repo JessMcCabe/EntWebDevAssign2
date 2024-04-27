@@ -17,7 +17,7 @@ import Avatar from "@mui/material/Avatar";
 import { CardActionArea } from '@mui/material';
 
 import { TVShowContext } from "../../contexts/tvShowsContext";
-import { BaseTVShow } from "../../types/interfaces";
+import { TVShowT } from "../../types/interfaces";
 
 
 const styles = {
@@ -31,8 +31,8 @@ const styles = {
 
 
 interface TVShowProps {
-  tvShow:BaseTVShow,
-  action: (m: BaseTVShow) => React.ReactNode;
+  tvShow:TVShowT,
+  action: (m: TVShowT) => React.ReactNode;
 }
 
 

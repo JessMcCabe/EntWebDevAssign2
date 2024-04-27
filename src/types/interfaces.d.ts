@@ -155,9 +155,9 @@ export interface BasePerson
 
 
 export interface TVShowListPageTemplateProps {
-  tvShows: BaseTVShow[];
+  tvShows: TVShowT[];
   title: string;
-  action: (m: BaseTVShow) => React.ReactNode;
+  action: (m: TVShowT) => React.ReactNode;
 }
 
 interface DiscoverTVShows {
@@ -268,4 +268,13 @@ interface DiscoverPersonTVShows {
   total_pages: number;
   total_results: number;
   cast: TVShowT[];
+}
+
+
+export interface TVShowReview {
+  author: string;
+  content: string;
+  agree: boolean;
+  rating: number;
+  tvShowId: number;
 }

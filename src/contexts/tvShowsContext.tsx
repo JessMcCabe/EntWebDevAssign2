@@ -1,16 +1,17 @@
 import React, { useState } from "react";
-import { BaseTVShow , Review} from "../types/interfaces";
+import { TVShowT , TVShowReview} from "../types/interfaces";
 
 interface TVShowContextInterface {
     favourites: number[];
-    addToFavourites: ((tvShow: BaseTVShow) => void);
-    removeFromFavourites: ((tvShow: BaseTVShow) => void);
-    
+    addToFavourites: ((tvShow: TVShowT) => void);
+    removeFromFavourites: ((tvShow: TVShowT) => void);
+    addReview: ((movie: TVShowT, review: TVShowReview) => void);  // NEW
 }
 const initialContextState = {
     favourites: [],
-    addToFavourites: (tvShow: BaseTVShow) => {tvShow.id },
-    removeFromFavourites: (tvShow: BaseTVShow) => { tvShow.id},
+    addToFavourites: (tvShow: TVShowT) => {tvShow.id },
+    removeFromFavourites: (tvShow: TVShowT) => { tvShow.id},
+    addReview: (tvShow: TVShowT, review: TVShowReview) => { tvShow.id, review},  // NEW
     
 };
 
@@ -19,16 +20,20 @@ export const TVShowContext = React.createContext<TVShowContextInterface>(initial
 
 const TVShowContextProvider: React.FC<React.PropsWithChildren> = (props) => {
     const [favourites, setFavourites] = useState<number[]>([]);
-    const addToFavourites = (tvShow: BaseTVShow) => {
+    const [myReviews, setMyReviews] = useState<TVShowReview[]>( [] )  // NEW
+    const addToFavourites = (tvShow: TVShowT) => {
         let updatedFavourites = [...favourites];
         if (!favourites.includes(tvShow.id)) {
             updatedFavourites.push(tvShow.id);
         }
         setFavourites(updatedFavourites);
     };
-    const removeFromFavourites = (tvShow: BaseTVShow) => {
+    const removeFromFavourites = (tvShow: TVShowT) => {
         setFavourites(favourites.filter((mId) => mId !== tvShow.id));
     };
+    const addReview = (tvShow: TVShowT, review: TVShowReview) => {   // NEW
+        setMyReviews( {...myReviews, [tvShow.id]: review } )
+      };
     
     return (
         <TVShowContext.Provider
@@ -36,6 +41,7 @@ const TVShowContextProvider: React.FC<React.PropsWithChildren> = (props) => {
                 favourites,
                 addToFavourites,
                 removeFromFavourites,
+                addReview, 
             }}
         >
             {props.children}

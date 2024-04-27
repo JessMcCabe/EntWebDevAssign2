@@ -1,11 +1,11 @@
 import React from "react";
 import TVShow from "../tvShowCard/";
 import Grid from "@mui/material/Grid";
-import { BaseTVShow } from "../../types/interfaces";
+import { TVShowT } from "../../types/interfaces";
 
 interface TVShowListProps {
-  tvShow: BaseTVShow[],
-  action: (m: BaseTVShow) => React.ReactNode;
+  tvShow: TVShowT[],
+  action: (m: TVShowT) => React.ReactNode;
 }
 
 const TVShowList: React.FC<TVShowListProps> = (props) => {

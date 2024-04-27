@@ -17,6 +17,7 @@ import { QueryClientProvider, QueryClient } from "react-query";
 import { ReactQueryDevtools } from 'react-query/devtools';
 import MoviesContextProvider from "./contexts/moviesContext";
 import PeopleContextProvider from "./contexts/peopleContext";
+import AddMovieTVShowPage from './pages/addTVShowReviewPage'
 import AddMovieReviewPage from './pages/addMovieReviewPage'
 import UpcomingMoviesPage from './pages/upcomingMoviesPage'
 import TVShowsAiringTodayPage from './pages/tvShowsAiringTodayPage'
@@ -44,6 +45,7 @@ const App = () => {
         <PeopleContextProvider>
         <Routes>
         <Route path="/reviews/form" element={<AddMovieReviewPage/>} />
+        <Route path="/reviews/tv/form" element={<AddMovieTVShowPage/>} />
         <Route path="/reviews/:id" element={<MovieReviewPage/>} />
         <Route path="/movies/favourites" element={<FavouriteMoviesPage />} />
         <Route path="/movies/playList" element={<PlayListMoviesPage />} />
