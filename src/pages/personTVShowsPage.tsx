@@ -1,17 +1,17 @@
 import React from "react";
-import PageTemplate from "../components/templateTVShowListPage";
-import { getTVShows } from "../api/tmdb-api";
+import PageTemplate from "../components/templateTVShowPeopleListPage";
+import { getTVShowsForPerson,getPerson } from "../api/tmdb-api";
 import useFiltering from "../hooks/useFiltering";
 import TVShowFilterUI, {
   nameFilter,
   genreFilter,
 } from "../components/tvShowFilterUI";
-import { DiscoverTVShows } from "../types/interfaces";
+import { DiscoverPersonTVShows,PersonT } from "../types/interfaces";
 import { BaseTVShow } from "../types/interfaces";
 import { useQuery } from "react-query";
 import Spinner from "../components/spinner";
 import AddToFavouritesIcon from '../components/cardIcons/addToFavouriteTVShow'
-
+import { useParams } from "react-router-dom";
 
 const nameFiltering = {
   name: "name",
@@ -24,12 +24,17 @@ const genreFiltering = {
   condition: genreFilter,
 };
 
-const PersonTVShowsPage = (props: any) => {
-  const { data, error, isLoading, isError } = useQuery<DiscoverTVShows, Error>("tvhome", getTVShows);
+const PersonTVShowsPage :  React.FC = () => {
+  const { id } = useParams();
+  const { data, error, isLoading, isError } = useQuery<DiscoverPersonTVShows, Error>(["tvShowPerson", id],
+  ()=> getTVShowsForPerson(id||""));
   const { filterValues, setFilterValues, filterFunction } = useFiltering(
     [],
     [nameFiltering, genreFiltering]
   );
+  const { data :personData, error: personError, isLoading: personIsLoading, isError:personIsError } = useQuery<PersonT, Error>(["personDetailsTV", id],
+()=> getPerson(id||"")
+);
 
   if (isLoading) {
     return <Spinner />;
@@ -38,7 +43,13 @@ const PersonTVShowsPage = (props: any) => {
   if (isError) {
     return <h1>{error.message}</h1>;
   }
+  if (personIsLoading) {
+    return <Spinner />;
+  }
 
+  if (personIsError) {
+    return <h1>{personError.message}</h1>;
+  }
 
   const changeFilterValues = (type: string, value: string) => {
     const changedFilter = { name: type, value: value };
@@ -49,15 +60,16 @@ const PersonTVShowsPage = (props: any) => {
     setFilterValues(updatedFilterSet);
   };
 
-  const tvShows = data ? data.results : [];
+  const tvShows = data ? data.cast : [];
   const displayedTVShows = filterFunction(tvShows);
-
+  const person = personData as PersonT
+  const name =`TV Shows starring ${person.name}`
 
   
   return (
     <>
       <PageTemplate
-        title="Discover TV Shows"
+        title={name }
         tvShows={displayedTVShows}
         action={(tvshow: BaseTVShow) => {
           return <AddToFavouritesIcon {...tvshow} />

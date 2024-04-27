@@ -259,3 +259,13 @@ interface DiscoverPersonMovies {
     person: PersonT;
 }
 
+
+
+
+
+interface DiscoverPersonTVShows {
+  page: number;	
+  total_pages: number;
+  total_results: number;
+  cast: TVShowT[];
+}

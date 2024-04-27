@@ -27,7 +27,7 @@ const genreFiltering = {
 const PersonMoviesPage:  React.FC = () => {
   const { id } = useParams();
   
-  const { data, error, isLoading, isError } = useQuery<DiscoverPersonMovies, Error>(["movie", id],
+  const { data, error, isLoading, isError } = useQuery<DiscoverPersonMovies, Error>(["moviePerson", id],
   ()=> getMoviesForPerson(id||"")
 );
 const { data :personData, error: personError, isLoading: personIsLoading, isError:personIsError } = useQuery<PersonT, Error>(["personDetails", id],
