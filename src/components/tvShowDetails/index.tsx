@@ -53,7 +53,7 @@ const TVShowDetails: React.FC<TVShowT> = (props) => {
                 Overview
             </Typography>
 
-            <Typography variant="h6" component="p">
+            <Typography variant="body1" component="p">
                 {tvShow.overview}
             </Typography>
 

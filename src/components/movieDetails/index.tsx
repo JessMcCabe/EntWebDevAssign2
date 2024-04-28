@@ -52,7 +52,7 @@ const MovieDetails: React.FC<MovieT> = (props) => {
                 Overview
             </Typography>
 
-            <Typography variant="h6" component="p">
+            <Typography variant="body1" component="p">
                 {movie.overview}
             </Typography>
 
