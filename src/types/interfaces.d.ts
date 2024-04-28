@@ -278,3 +278,11 @@ export interface TVShowReview {
   rating: number;
   tvShowId: number;
 }
+
+interface DiscoverCredits {
+  page: number;	
+  total_pages: number;
+  total_results: number;
+  cast: PersonT[];
+  crew: PersonT[];
+}
