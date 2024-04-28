@@ -222,6 +222,9 @@ const SiteHeader: React.FC = () => {
          <MenuItem onClick={handleCloseM1} >
               <NavLink to="/movies/favourites"style={{color: 'white', textDecoration: 'none'}}>Favourite Movies </NavLink>
          </MenuItem>
+         <MenuItem onClick={handleCloseM1} >
+              <NavLink to="/movies/search"style={{color: 'white', textDecoration: 'none'}}>Search Movies </NavLink>
+         </MenuItem>
       </Menu>
     </div>
 
@@ -282,6 +285,9 @@ const SiteHeader: React.FC = () => {
          <MenuItem onClick={handleCloseTVShows} >
               <NavLink to="/tvshows/favourites/"style={{color: 'white', textDecoration: 'none'}}>Favourite TV Shows </NavLink>
          </MenuItem>
+         <MenuItem onClick={handleCloseTVShows} >
+              <NavLink to="/tvshows/search/"style={{color: 'white', textDecoration: 'none'}}>Search TV Shows </NavLink>
+         </MenuItem>
       
       </Menu>
     </div>
@@ -313,6 +319,9 @@ const SiteHeader: React.FC = () => {
          </MenuItem>
          <MenuItem onClick={handleClosePeople} >
               <NavLink to="/people/favourites"style={{color: 'white', textDecoration: 'none'}}>Favourite Actors </NavLink>
+         </MenuItem>
+         <MenuItem onClick={handleClosePeople} >
+              <NavLink to="/people/search"style={{color: 'white', textDecoration: 'none'}}>Search People </NavLink>
          </MenuItem>
 
       
