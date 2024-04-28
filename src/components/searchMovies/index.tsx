@@ -6,15 +6,15 @@ import Box from "@mui/material/Box";
 import { useForm, Controller, SubmitHandler } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import styles from "./styles";
-import { TVShowT, TVShowSearch } from "../../types/interfaces";
+import { ListedMovie, MovieSearch } from "../../types/interfaces";
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
 
 
-const SearchFormTVShow: React.FC<TVShowT> = () => {
+const SearchFormTVShow: React.FC<ListedMovie> = () => {
   const defaultValues = {
     defaultValues: {
-      tvShowName: "",
+      movieName: "",
      
     }
   };
@@ -29,7 +29,7 @@ const SearchFormTVShow: React.FC<TVShowT> = () => {
     formState: { errors },
     handleSubmit,
     reset,
-  } = useForm<TVShowSearch>(defaultValues);
+  } = useForm<MovieSearch>(defaultValues);
 
   const navigate = useNavigate();
 
@@ -38,8 +38,8 @@ const SearchFormTVShow: React.FC<TVShowT> = () => {
 
 
 
-  const onSubmit: SubmitHandler<TVShowSearch> = (query) => {
-    navigate(`/tvShow/search/${query}`);
+  const onSubmit: SubmitHandler<MovieSearch> = (query) => {
+    navigate(`/movie/search/${query}`);
     console.log(query);
   };
 
@@ -48,14 +48,14 @@ const SearchFormTVShow: React.FC<TVShowT> = () => {
     <CssBaseline />
     <Box component="div" sx={styles.root}>
       <Typography component="h2" variant="h3">
-        Search for TV Show
+        Search for Movie
       </Typography>
 
       <form style={styles.form} onSubmit={handleSubmit(onSubmit)} noValidate>
         <Controller
-          name="tvShowName"
+          name="movieName"
           control={control}
-          rules={{ required: "TV Show name is required" }}
+          rules={{ required: "Movie name is required" }}
           defaultValue=""
           render={({ field: { onChange, value } }) => (
             <TextField
@@ -66,14 +66,14 @@ const SearchFormTVShow: React.FC<TVShowT> = () => {
               onChange={onChange}
               value={value}
               id="query"
-              label="TV Show Name"
+              label="Movie Name"
               autoFocus
             />
           )}
         />
-        {errors.tvShowName && (
+        {errors.movieName && (
           <Typography variant="h6" component="p">
-            {errors.tvShowName.message}
+            {errors.movieName.message}
           </Typography>
         )}
         
@@ -95,7 +95,7 @@ const SearchFormTVShow: React.FC<TVShowT> = () => {
             sx={styles.submit}
             onClick={() => {
               reset({
-                tvShowName: "",
+                movieName: "",
                
               });
             }}

@@ -300,3 +300,8 @@ export interface TVShowSearch {
   tvShowName: string;
   
 }
+
+export interface MovieSearch {
+  movieName: string;
+  
+}
