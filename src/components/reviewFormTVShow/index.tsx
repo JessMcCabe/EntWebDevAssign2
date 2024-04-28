@@ -12,6 +12,8 @@ import ratings from "./ratingCategories";
 import { TVShowT, TVShowReview } from "../../types/interfaces";
 import Snackbar from "@mui/material/Snackbar";
 import Alert from "@mui/material/Alert";
+import { ThemeProvider, createTheme } from '@mui/material/styles';
+import CssBaseline from '@mui/material/CssBaseline';
 
 
 const ReviewFormTVShow: React.FC<TVShowT> = (props) => {
@@ -25,6 +27,11 @@ const ReviewFormTVShow: React.FC<TVShowT> = (props) => {
     }
   };
 
+  const darkTheme = createTheme({
+    palette: {
+      mode: 'dark',
+    },
+  });
   const {
     control,
     formState: { errors },
@@ -55,7 +62,8 @@ const ReviewFormTVShow: React.FC<TVShowT> = (props) => {
   };
 
   return (
-    
+    <ThemeProvider theme={darkTheme}>
+    <CssBaseline />
     <Box component="div" sx={styles.root}>
       <Typography component="h2" variant="h3">
         Write a review
@@ -179,6 +187,7 @@ const ReviewFormTVShow: React.FC<TVShowT> = (props) => {
         </Box>
       </form>
     </Box>
+    </ThemeProvider>
   );
 };
 

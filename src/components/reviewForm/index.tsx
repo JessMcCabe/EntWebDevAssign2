@@ -12,6 +12,8 @@ import ratings from "./ratingCategories";
 import { MovieT, Review } from "../../types/interfaces";
 import Snackbar from "@mui/material/Snackbar";
 import Alert from "@mui/material/Alert";
+import { ThemeProvider, createTheme } from '@mui/material/styles';
+import CssBaseline from '@mui/material/CssBaseline';
 
 
 const ReviewForm: React.FC<MovieT> = (props) => {
@@ -25,6 +27,12 @@ const ReviewForm: React.FC<MovieT> = (props) => {
     }
   };
 
+
+  const darkTheme = createTheme({
+    palette: {
+      mode: 'dark',
+    },
+  });
   const {
     control,
     formState: { errors },
@@ -55,7 +63,8 @@ const ReviewForm: React.FC<MovieT> = (props) => {
   };
 
   return (
-    
+    <ThemeProvider theme={darkTheme}>
+    <CssBaseline />
     <Box component="div" sx={styles.root}>
       <Typography component="h2" variant="h3">
         Write a review
@@ -179,6 +188,7 @@ const ReviewForm: React.FC<MovieT> = (props) => {
         </Box>
       </form>
     </Box>
+    </ThemeProvider>
   );
 };
 
