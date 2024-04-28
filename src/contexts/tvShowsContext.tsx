@@ -5,7 +5,7 @@ interface TVShowContextInterface {
     favourites: number[];
     addToFavourites: ((tvShow: TVShowT) => void);
     removeFromFavourites: ((tvShow: TVShowT) => void);
-    addReview: ((movie: TVShowT, review: TVShowReview) => void);  // NEW
+    addReview: ((tvShow: TVShowT, review: TVShowReview) => void);  // NEW
 }
 const initialContextState = {
     favourites: [],

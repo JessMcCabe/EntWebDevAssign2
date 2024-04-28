@@ -294,3 +294,9 @@ interface DiscoverSimilarVShows {
   total_results: number;
   results: BaseTVShow[];
 }
+
+
+export interface TVShowSearch {
+  tvShowName: string;
+  
+}
