@@ -10,9 +10,15 @@ import MenuItem from "@mui/material/MenuItem";
 import Menu from "@mui/material/Menu";
 import { useNavigate } from "react-router-dom";
 import { useTheme } from "@mui/material/styles";
+import AccountCircle from '@mui/icons-material/AccountCircle';
 import useMediaQuery from "@mui/material/useMediaQuery";
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import { NavLink } from 'react-router-dom'
+import Box from '@mui/material/Box';
+import FormControlLabel from '@mui/material/FormControlLabel';
+import FormGroup from '@mui/material/FormGroup';
+import Switch from '@mui/material/Switch';
+
 
 const styles = {
   title: {
@@ -47,8 +53,13 @@ const SiteHeader: React.FC = () => {
   const [anchorElPeople, setAnchorElPeople] = useState<HTMLButtonElement|null>(null);
   const openPeople = Boolean(anchorElPeople);
 
+  const [anchorElIcon, setAnchorElIcon] = React.useState<null | HTMLElement>(null);
+
+  const [auth, setAuth] = React.useState(true);
+
 
   const theme =darkTheme
+
   const isMobile = useMediaQuery(theme.breakpoints.down("lg"));
   const handleClickM1 = (event: React.MouseEvent<HTMLButtonElement>) => {
     setAnchorElM1(event.currentTarget);
@@ -80,6 +91,18 @@ const SiteHeader: React.FC = () => {
     setAnchorElPeople(null);
   };
 
+
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setAuth(event.target.checked);
+  };
+
+  const handleMenu = (event: React.MouseEvent<HTMLElement>) => {
+    setAnchorElIcon(event.currentTarget);
+  };
+
+  const handleClose = () => {
+    setAnchorElIcon(null);
+  };
  /* const menuOptions = [
     { label: "Home", path: "/" },
     { label: "Upcoming Movies", path: "/movies/upcoming" },
@@ -101,10 +124,70 @@ const SiteHeader: React.FC = () => {
   return (
     <>
     <ThemeProvider theme={darkTheme}>
-      <AppBar sx={styles.appbar} position="fixed" elevation={10} color="primary">
+    <AppBar sx={styles.appbar} position="fixed" elevation={10} color="primary">
+    <Box sx={{ flexGrow: 1 }}>
+    
+      
+      
         <Toolbar>
+        <FormGroup>
+        <FormControlLabel
+          control={
+            <Switch
+              checked={auth}
+              onChange={handleChange}
+              aria-label="login switch"
+            />
+          }
+          label={auth ? 'Logout' : 'Login'}
+        />
+      </FormGroup>
+        <IconButton
+            size="large"
+            edge="start"
+            color="inherit"
+            aria-label="menu"
+            sx={{ mr: 2 }}
+          >
+            <MenuIcon />
+          </IconButton>
+          <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
+          TMDB Client
+          </Typography>
+          {auth && (
+            <div>
+              <IconButton
+                size="large"
+                aria-label="account of current user"
+                aria-controls="menu-appbar"
+                aria-haspopup="true"
+                onClick={handleMenu}
+                color="inherit"
+              >
+                <AccountCircle />
+              </IconButton>
+              <Menu
+                id="menu-appbar"
+                anchorEl={anchorElIcon}
+                anchorOrigin={{
+                  vertical: 'top',
+                  horizontal: 'right',
+                }}
+                keepMounted
+                transformOrigin={{
+                  vertical: 'top',
+                  horizontal: 'right',
+                }}
+                open={Boolean(anchorElIcon)}
+                onClose={handleClose}
+              >
+                        <MenuItem onClick={handleClose}>Profile</MenuItem>
+                <MenuItem onClick={handleClose}>My account</MenuItem>
+              </Menu>
+            </div>
+          )}
           <Typography variant="body1" sx={styles.title}>
-            TMDB Client
+            
           </Typography>
           <Typography variant="h6" sx={styles.title}>
             Welcome to the home of YOUR Movies!
@@ -238,7 +321,9 @@ const SiteHeader: React.FC = () => {
 
     
         </Toolbar>
+        </Box>
       </AppBar>
+      
      <Offset/>
 
       {/* <div className={classes.offset} /> */}
