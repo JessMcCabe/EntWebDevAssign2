@@ -286,3 +286,11 @@ interface DiscoverCredits {
   cast: PersonT[];
   crew: PersonT[];
 }
+
+
+interface DiscoverSimilarVShows {
+  page: number;	
+  total_pages: number;
+  total_results: number;
+  results: BaseTVShow[];
+}

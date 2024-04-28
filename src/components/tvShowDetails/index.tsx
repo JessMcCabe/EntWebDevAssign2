@@ -12,6 +12,10 @@ import Drawer from "@mui/material/Drawer";
 import TVShowReviews from '../tvShowReviews'
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
+import Link from '@mui/material/Link';
+
+
+
 const styles = {
     chipSet: {
         display: "flex",
@@ -71,6 +75,9 @@ const TVShowDetails: React.FC<TVShowT> = (props) => {
                 />
                 <Chip label={`Released: ${tvShow.first_air_date}`} />
             </Paper>
+            <Typography variant="h5" component="h3">
+            <Link href={`/tvShows/${tvShow.id}/similar`}>View Shows similar to {tvShow.name}</Link>
+            </Typography>
             </ThemeProvider>
             <Fab    
         color="secondary"

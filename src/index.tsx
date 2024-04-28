@@ -25,6 +25,7 @@ import UpcomingMoviesPage from './pages/upcomingMoviesPage'
 import TVShowsAiringTodayPage from './pages/tvShowsAiringTodayPage'
 import PlayListMoviesPage from "./pages/playListPage";
 import TVShowsHomePage from "./pages/tvShowsHomePage";
+import TVShowSimilar from "./pages/tvShowSimilarPage";
 import TVShowContextProvider from "./contexts/tvShowsContext";
 
 const queryClient = new QueryClient({
@@ -57,6 +58,7 @@ const App = () => {
         <Route path="/movies/:id/crew" element={<MovieCrew />} />
         <Route path="/tvshows/" element={<TVShowsHomePage />} />
         <Route path="/tvshows/:id" element={<TVShow />} />
+        <Route path="/tvshows/:id/similar" element={<TVShowSimilar />} />
         <Route path="/tvshows/favourites/" element={<FavouriteTVShowsPage />} />
         <Route path="/tvshows/today" element={<TVShowsAiringTodayPage />} />
         <Route path="/people" element={<PeopleHomePage />} />
