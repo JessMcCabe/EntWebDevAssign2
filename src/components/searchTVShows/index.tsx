@@ -39,9 +39,12 @@ const SearchFormTVShow: React.FC = () => {
 
 
   const onSubmit: SubmitHandler<TVShowSearch> = (query) => {
-    //navigate(`/tvShow/search/${query}`);
-    navigate(`/tvShows`);
+    console.log("query is");
     console.log(query);
+    navigate(`/tvShows/search/${query}/results`);
+    
+    //navigate(`/tvShows`);
+   
   };
 
   return (
@@ -82,6 +85,7 @@ const SearchFormTVShow: React.FC = () => {
 
         <Box >
           <Button
+          
             type="submit"
             variant="contained"
             color="primary"
