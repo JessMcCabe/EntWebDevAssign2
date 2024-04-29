@@ -11,7 +11,7 @@ import { ThemeProvider, createTheme } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
 
 
-const SearchFormTVShow: React.FC<ListedMovie> = () => {
+const SearchFormMovies: React.FC<ListedMovie> = () => {
   const defaultValues = {
     defaultValues: {
       movieName: "",
@@ -109,4 +109,4 @@ const SearchFormTVShow: React.FC<ListedMovie> = () => {
   );
 };
 
-export default SearchFormTVShow;
+export default SearchFormMovies;

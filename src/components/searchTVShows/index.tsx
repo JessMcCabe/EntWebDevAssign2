@@ -6,12 +6,12 @@ import Box from "@mui/material/Box";
 import { useForm, Controller, SubmitHandler } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import styles from "./styles";
-import { TVShowT, TVShowSearch } from "../../types/interfaces";
+import {  TVShowSearch } from "../../types/interfaces";
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
 
 
-const SearchFormTVShow: React.FC<TVShowT> = () => {
+const SearchFormTVShow: React.FC = () => {
   const defaultValues = {
     defaultValues: {
       tvShowName: "",
@@ -39,7 +39,8 @@ const SearchFormTVShow: React.FC<TVShowT> = () => {
 
 
   const onSubmit: SubmitHandler<TVShowSearch> = (query) => {
-    navigate(`/tvShow/search/${query}`);
+    //navigate(`/tvShow/search/${query}`);
+    navigate(`/tvShows`);
     console.log(query);
   };
 

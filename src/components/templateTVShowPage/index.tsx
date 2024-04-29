@@ -16,7 +16,7 @@ const styles = {
         justifyContent: "space-around",
     },
     gridListTile: {
-        width: 250,
+        width: 450,
         height: '100vh',
     },
 };
