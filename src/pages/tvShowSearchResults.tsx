@@ -26,6 +26,8 @@ const genreFiltering = {
 
 const TVShowSearchResultsPage :  React.FC = () => {
   const { query } = useParams();
+  console.log("Query is in serach page:");
+  console.log(query);
   const { data, error, isLoading, isError } = useQuery<DiscoverTVShows, Error>(["searchTVShow", query],
   ()=> getTVShowSearch(query||""));
   const { filterValues, setFilterValues, filterFunction } = useFiltering(

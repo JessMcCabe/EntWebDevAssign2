@@ -39,9 +39,11 @@ const SearchFormTVShow: React.FC = () => {
 
 
   const onSubmit: SubmitHandler<TVShowSearch> = (query) => {
-    console.log("query is");
+  
+    const query_string = query.tvShowName;
+    console.log("query string var is");
     console.log(query);
-    navigate(`/tvShows/search/${query}/results`);
+    navigate(`/tvShows/search/${query_string}/results`);
     
     //navigate(`/tvShows`);
    
