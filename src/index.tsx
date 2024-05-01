@@ -6,6 +6,7 @@ import PeopleHomePage from "./pages/peopleHomePage";
 import MoviePage from "./pages/movieDetailsPage";
 import MovieCast from "./pages/movieCastPage";
 import MovieCrew from "./pages/movieCrewPage";
+import PersonSearch from "./pages/personSearchPage";
 import PersonMoviesPage from "./pages/personMoviesPage";
 import PersonTVShowsPage from "./pages/personTVShowsPage";
 import TVShow from "./pages/tvShowDetailsPage";
@@ -74,6 +75,7 @@ const App = () => {
         <Route path="/people/:id" element={<PeopleDetailPage />} />
         <Route path="/people/:id/movies" element={<PersonMoviesPage />} />
         <Route path="/people/:id/tvShows" element={<PersonTVShowsPage />} />
+        <Route path="/people/search/" element={<PersonSearch />} />
         <Route path="/" element={<HomePage />} />
         <Route path="*" element={<Navigate to="/" />} />
         </Routes>

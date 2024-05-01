@@ -305,3 +305,8 @@ export interface MovieSearch {
   movieName: string;
   
 }
+
+export interface PersonSearch {
+  personName: string;
+  
+}
