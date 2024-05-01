@@ -6,12 +6,12 @@ import Box from "@mui/material/Box";
 import { useForm, Controller, SubmitHandler } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import styles from "./styles";
-import { ListedMovie, MovieSearch } from "../../types/interfaces";
+import { MovieSearch } from "../../types/interfaces";
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
 
 
-const SearchFormMovies: React.FC<ListedMovie> = () => {
+const SearchFormMovies: React.FC = () => {
   const defaultValues = {
     defaultValues: {
       movieName: "",
@@ -39,8 +39,10 @@ const SearchFormMovies: React.FC<ListedMovie> = () => {
 
 
   const onSubmit: SubmitHandler<MovieSearch> = (query) => {
-    navigate(`/movie/search/${query}`);
+    const query_string = query.movieName
+    console.log("query string var is");
     console.log(query);
+    navigate(`/movies/search/${query_string}/results`);
   };
 
   return (

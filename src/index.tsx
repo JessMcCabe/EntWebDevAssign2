@@ -14,6 +14,8 @@ import TVShowSearchResults from "./pages/tvShowSearchResults";
 import FavouriteMoviesPage from "./pages/favouriteMoviesPage"; // NEW
 import FavouriteTVShowsPage from "./pages/favouriteTVShowsPage"; 
 import FavouritePeoplePage from "./pages/favouritePeoplePage";
+import MovieSearch from "./pages/movieSearchPage";
+import MovieSearchResults from "./pages/movieSearchResults";
 import MovieReviewPage from "./pages/movieReviewPage";
 import SiteHeader from './components/siteHeader'
 import PeopleDetailPage from "./pages/peopleDetailPage";
@@ -58,6 +60,8 @@ const App = () => {
         <Route path="/movies/:id" element={<MoviePage />} />
         <Route path="/movies/:id/cast" element={<MovieCast />} />
         <Route path="/movies/:id/crew" element={<MovieCrew />} />
+        <Route path="/movies/search/" element={<MovieSearch />} />
+        <Route path="/movies/search/:query/results" element={<MovieSearchResults />} />
         <Route path="/tvshows/" element={<TVShowsHomePage />} />
         <Route path="/tvshows/:id" element={<TVShow />} />
         <Route path="/tvshows/search/" element={<TVShowSearch />} />

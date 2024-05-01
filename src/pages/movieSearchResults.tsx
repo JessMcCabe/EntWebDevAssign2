@@ -1,22 +1,22 @@
 import React from "react";
-import PageTemplate from "../components/templateTVShowListPage";
-import { getTVShowSearch } from "../api/tmdb-api";
+import PageTemplate from "../components/templateMovieListPage";
+import { getMovieSearch } from "../api/tmdb-api";
 import useFiltering from "../hooks/useFiltering";
-import TVShowFilterUI, {
-  nameFilter,
+import MovieFilterUI, {
+  titleFilter,
   genreFilter,
-} from "../components/tvShowFilterUI";
-import { DiscoverTVShows } from "../types/interfaces";
-import { BaseTVShow } from "../types/interfaces";
+} from "../components/movieFilterUI";
+import { DiscoverMovies } from "../types/interfaces";
+import { ListedMovie } from "../types/interfaces";
 import { useQuery } from "react-query";
 import Spinner from "../components/spinner";
-import AddToFavouritesIcon from '../components/cardIcons/addToFavouriteTVShow'
+import AddToFavouritesIcon from '../components/cardIcons/addToFavourites'
 import { useParams } from "react-router-dom";
 
-const nameFiltering = {
-  name: "name",
+const titleFiltering = {
+  name: "title",
   value: "",
-  condition: nameFilter,
+  condition: titleFilter,
 };
 const genreFiltering = {
   name: "genre",
@@ -24,15 +24,15 @@ const genreFiltering = {
   condition: genreFilter,
 };
 
-const TVShowSearchResultsPage :  React.FC = () => {
+const MovieSearchResultsPage :  React.FC = () => {
   const { query } = useParams();
   console.log("Query is in serach page:");
   console.log(query);
-  const { data, error, isLoading, isError } = useQuery<DiscoverTVShows, Error>(["searchTVShow", query],
-  ()=> getTVShowSearch(query||""));
+  const { data, error, isLoading, isError } = useQuery<DiscoverMovies, Error>(["searchMovie", query],
+  ()=> getMovieSearch(query||""));
   const { filterValues, setFilterValues, filterFunction } = useFiltering(
     [],
-    [nameFiltering, genreFiltering]
+    [titleFiltering, genreFiltering]
   );
   
 console.log("Query is:");
@@ -55,8 +55,8 @@ console.log(query);
     setFilterValues(updatedFilterSet);
   };
 
-  const tvShows = data ? data.results : [];
-  const displayedTVShows = filterFunction(tvShows);
+  const movies = data ? data.results : [];
+  const displayedMovies = filterFunction(movies);
   
   const name =`Search Results For "${query}"`
 
@@ -65,17 +65,17 @@ console.log(query);
     <>
       <PageTemplate
         title={name }
-        tvShows={displayedTVShows}
-        action={(tvshow: BaseTVShow) => {
-          return <AddToFavouritesIcon {...tvshow} />
+        movies={displayedMovies}
+        action={(movie: ListedMovie) => {
+          return <AddToFavouritesIcon {...movie} />
         }}
       />
-      <TVShowFilterUI
+      <MovieFilterUI
         onFilterValuesChange={changeFilterValues}
-        nameFilter={filterValues[0].value}
+        titleFilter={filterValues[0].value}
         genreFilter={filterValues[1].value}
       />
     </>
   );
 };
-export default TVShowSearchResultsPage;
+export default MovieSearchResultsPage;
