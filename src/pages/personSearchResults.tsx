@@ -8,7 +8,7 @@ import TVShowFilterUI, {
 } from "../components/peopleFilterUI";
 import { DiscoverPeople } from "../types/interfaces";
 import { BasePerson } from "../types/interfaces";
-import { useQuery } from "react-query";
+import { keepPreviousData,useQuery } from "@tanstack/react-query";
 import Spinner from "../components/spinner";
 import AddToFavouritesIcon from '../components/cardIcons/addToFavouritePerson'
 import { useParams } from "react-router-dom";
@@ -24,8 +24,21 @@ const PersonSearchResultsPage :  React.FC = () => {
   const { query } = useParams();
   console.log("Query is in serach page:");
   console.log(query);
-  const { data, error, isLoading, isError } = useQuery<DiscoverPeople, Error>(["searchPerson", query],
-  ()=> getPersonSearch(query||""));
+  //const { data, error, isLoading, isError } = useQuery<DiscoverPeople, Error>(["searchPerson", query],
+  //()=> getPersonSearch(query||""));
+
+  const [page, setPage] = React.useState(1)
+  
+  const { isPending, isError, error, data, isFetching, isPlaceholderData } =
+  useQuery({
+    queryKey: ['searchPerson', page],
+    queryFn: () => getPersonSearch(query||"", page),
+    placeholderData: keepPreviousData,
+  })
+
+
+
+
   const { filterValues, setFilterValues, filterFunction } = useFiltering(
     [],
     [nameFiltering]
@@ -33,7 +46,7 @@ const PersonSearchResultsPage :  React.FC = () => {
   
 console.log("Query is:");
 console.log(query);
-  if (isLoading) {
+  if (isFetching) {
     return <Spinner />;
   }
 
@@ -59,6 +72,13 @@ console.log(query);
   
   return (
     <>
+    <div>
+    {isPending ? (
+        <div>Loading...</div>
+      ) : isError ? (
+        <div>Error: {error}</div>
+      ) : (
+        <div>
       <PageTemplate
         title={name }
         people={displayedPeople}
@@ -66,6 +86,30 @@ console.log(query);
           return <AddToFavouritesIcon {...person} />
         }}
       />
+
+</div>
+      )}
+      <span>Current Page: {page}</span>
+      <button
+        onClick={() => setPage((old) => Math.max(old - 1, 0))}
+        disabled={page === 1}
+      >
+        Previous Page
+      </button>{' '}
+      <button
+        onClick={() => {
+          //if (!isPlaceholderData && data.hasMore) {
+            setPage((old) => old + 1)
+         // }
+        }}
+        // Disable the Next Page button until we know a next page is available
+        disabled={page ===data?.total_pages}
+      >
+        Next Page
+      </button>
+      {isFetching ? <span> Loading...</span> : null}{' '}
+      
+    </div>
       <TVShowFilterUI
         onFilterValuesChange={changeFilterValues}
         nameFilter={filterValues[0].value}
