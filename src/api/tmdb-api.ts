@@ -283,9 +283,9 @@ export const getCastOfMovie = (id: string | number) => {
 
 
 
-export const getTVShowSimilar = (id: string | number) => {
+export const getTVShowSimilar = (id: string | number, page=0) => {
   return fetch(
-    `https://api.themoviedb.org/3/tv/${id}/similar?api_key=${import.meta.env.VITE_TMDB_KEY}&language=en-US&include_adult=false&include_video=false&page=1`
+    `https://api.themoviedb.org/3/tv/${id}/similar?api_key=${import.meta.env.VITE_TMDB_KEY}&language=en-US&include_adult=false&include_video=false&page=${page}`
   ).then((response) => {
     if (!response.ok)
       throw new Error(`Unable to fetch movies. Response status: ${response.status}`);
