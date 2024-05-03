@@ -239,9 +239,9 @@ export const getPersonImages = (id: string | number) => {
 };
 
 
-export const getMoviesForPerson = (id: string | number) => {
+export const getMoviesForPerson = (id: string | number, page=0) => {
   return fetch(
-    `https://api.themoviedb.org/3/person/${id}/movie_credits?api_key=${import.meta.env.VITE_TMDB_KEY}&language=en-US&include_adult=false&include_video=false&page=1`
+    `https://api.themoviedb.org/3/person/${id}/movie_credits?api_key=${import.meta.env.VITE_TMDB_KEY}&language=en-US&include_adult=false&include_video=false&page=${page}`
   ).then((response) => {
     if (!response.ok)
       throw new Error(`Unable to fetch movies. Response status: ${response.status}`);
