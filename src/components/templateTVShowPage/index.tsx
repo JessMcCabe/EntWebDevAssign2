@@ -5,7 +5,7 @@ import ImageList from "@mui/material/ImageList";
 import ImageListItem from "@mui/material/ImageListItem";
 import { getTVShowImages } from "../../api/tmdb-api";
 import { BaseTVShow, TVShowImage } from "../../types/interfaces";
-import { useQuery } from "react-query";
+import { keepPreviousData,useQuery } from "@tanstack/react-query";
 import Spinner from '../spinner';
 
 
@@ -29,12 +29,24 @@ interface TemplateTVShowPageProps {
 
 const TemplateTVShowPage: React.FC<TemplateTVShowPageProps> = (props) => {
     const { tvShow, children } = props;
-    const { data, error, isLoading, isError } = useQuery<TVShowImage[], Error>(
+    /*const { data, error, isLoading, isError } = useQuery<TVShowImage[], Error>(
         ["images", tvShow.id],
         () => getTVShowImages(tvShow.id)
-    );
+    );*/
 
-    if (isLoading) {
+
+
+
+    const [page, setPage] = React.useState(1)
+  
+    const { isPending, isError, error, data, isFetching, isPlaceholderData } =
+    useQuery({
+      queryKey: ['images', tvShow.id],
+      queryFn: () =>getTVShowImages(tvShow.id),
+      placeholderData: keepPreviousData,
+    })
+
+    if (isFetching) {
         return <Spinner />;
     }
 
