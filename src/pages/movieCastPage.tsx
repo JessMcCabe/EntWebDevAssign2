@@ -8,7 +8,7 @@ import PersonFilterUI, {
 } from "../components/peopleFilterUI";
 import { DiscoverCredits, ListedMovie } from "../types/interfaces";
 import { BasePerson } from "../types/interfaces";
-import { useQuery } from "react-query";
+import { keepPreviousData,useQuery } from "@tanstack/react-query";
 import Spinner from "../components/spinner";
 import AddToFavouritesIcon from '../components/cardIcons/addToFavouritePerson'
 import { useParams } from "react-router-dom";
@@ -23,17 +23,38 @@ const nameFiltering = {
 const MovieCastPage:  React.FC = () => {
   const { id } = useParams();
   
-  const { data, error, isLoading, isError } = useQuery<DiscoverCredits, Error>(["movieCast", id],
+  /*const { data, error, isLoading, isError } = useQuery<DiscoverCredits, Error>(["movieCast", id],
   ()=> getCastOfMovie(id||""));
   const { data :movieData, error: movieError, isLoading: movieIsLoading, isError:movieIsError } = useQuery<ListedMovie, Error>(["movieCastDetails", id],
 ()=> getMovie(id||"")
-);
+);*/
+
+
+const [page, setPage] = React.useState(1)
+
+
+const { isPending, isError, error, data, isFetching, isPlaceholderData } =
+  useQuery({
+    queryKey: ['movieCast', page],
+    queryFn: () => getCastOfMovie(id||"",page),
+    placeholderData: keepPreviousData,
+  })
+
+
+
+  const { isPending: movieIsPending, isError: isMovieError, error : movieError, data :movieData, isFetching: movieIsFetching, isPlaceholderData :moviePlacheHolderDate } =
+  useQuery({
+    queryKey: ['movieCastDetails'],
+    queryFn: () => getMovie(id||""),
+    
+  })
+
   const { filterValues, setFilterValues, filterFunction } = useFiltering(
     [],
     [nameFiltering]
   );
 
-  if (isLoading) {
+  if (isFetching) {
     return <Spinner />;
   }
 
@@ -42,11 +63,11 @@ const MovieCastPage:  React.FC = () => {
   }
 
   
-  if (movieIsLoading) {
+  if (movieIsFetching) {
     return <Spinner />;
   }
 
-  if (movieIsError) {
+  if (isMovieError) {
     return <h1>{movieError.message}</h1>;
   }
 
@@ -66,6 +87,14 @@ const MovieCastPage:  React.FC = () => {
   
   return (
     <>
+
+<div>
+    {isPending ? (
+        <div>Loading...</div>
+      ) : isError ? (
+        <div>Error: {error}</div>
+      ) : (
+        <div>
       <PageTemplate
         title={movie_heading}
         people={displayedPeople}
@@ -73,6 +102,29 @@ const MovieCastPage:  React.FC = () => {
           return <AddToFavouritesIcon {...people} />
         }}
       />
+      </div>
+      )}
+      <span>Current Page: {page}</span>
+      <button
+        onClick={() => setPage((old) => Math.max(old - 1, 0))}
+        disabled={page === 1}
+      >
+        Previous Page
+      </button>{' '}
+      <button
+        onClick={() => {
+          //if (!isPlaceholderData && data.hasMore) {
+            setPage((old) => old + 1)
+         // }
+        }}
+        // Disable the Next Page button until we know a next page is available
+        disabled={page ===data?.total_pages}
+      >
+        Next Page
+      </button>
+      {isFetching ? <span> Loading...</span> : null}{' '}
+      
+    </div>
       <PersonFilterUI
         onFilterValuesChange={changeFilterValues}
         nameFilter={filterValues[0].value}
