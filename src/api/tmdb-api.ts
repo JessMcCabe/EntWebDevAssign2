@@ -299,10 +299,10 @@ export const getTVShowSimilar = (id: string | number) => {
 
 
 
-export const getTVShowSearch = (query: string | number) => {
+export const getTVShowSearch = (query: string | number,page=0) => {
   return fetch(
    // `https://api.themoviedb.org/3/search/tv?query=${query}?api_key=${import.meta.env.VITE_TMDB_KEY}&language=en-US&include_adult=false&page=1`
-   `https://api.themoviedb.org/3/search/tv?query=${query}&api_key=${import.meta.env.VITE_TMDB_KEY}&include_adult=false&language=en-US&page=1`
+   `https://api.themoviedb.org/3/search/tv?query=${query}&api_key=${import.meta.env.VITE_TMDB_KEY}&include_adult=false&language=en-US&page=${page}`
   ).then((response) => {
     if (!response.ok)
       throw new Error(`Unable to fetch search results for tv shows. Response status: ${response.status} and query is: ${query}`);

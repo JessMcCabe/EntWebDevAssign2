@@ -1,7 +1,7 @@
 import React, { useContext } from "react"
 import PageTemplate from "../components/templateTVShowListPage";
 import { TVShowContext } from "../contexts/tvShowsContext";
-import { useQueries } from "react-query";
+import { keepPreviousData,useQueries } from "@tanstack/react-query";
 import { getTVShow } from "../api/tmdb-api";
 import Spinner from "../components/spinner";
 import useFiltering from "../hooks/useFiltering";
@@ -38,14 +38,25 @@ const FavouriteTVShowsPage: React.FC = () => {
   );
 
   // Create an array of queries and run them in parallel.
-  const favouriteTVShowQueries = useQueries(
+ /* const favouriteTVShowQueries = useQueries(
     tvShowIds.map((tvShowId) => {
       return {
         queryKey: ["tvShow", tvShowId ],
         queryFn: () => getTVShow(tvShowId.toString()),
       };
     })
-  );
+  );*/
+
+  const favouriteTVShowQueries = useQueries({
+    queries: tvShowIds.map((tvShowId) => ({
+      queryKey: ['movie', tvShowId],
+      queryFn: () => getTVShow(tvShowId.toString()),
+      staleTime: Infinity,
+    })),
+  })
+
+
+
    // Check if any of the parallel queries is still loading.
    const isLoading = favouriteTVShowQueries.find((m) => m.isLoading === true);
 
