@@ -43,9 +43,9 @@ const SearchFormPerson: React.FC = () => {
     const query_string = query.personName;
     console.log("query string var is");
     console.log(query);
-    navigate(`/person/search/${query_string}/results`);
+    navigate(`/people/search/${query_string}/results`);
     
-    //navigate(`/tvShows`);
+ 
    
   };
 
@@ -54,7 +54,7 @@ const SearchFormPerson: React.FC = () => {
     <CssBaseline />
     <Box component="div" sx={styles.root}>
       <Typography component="h2" variant="h3">
-        Search for TV Show
+        Search for Person
       </Typography>
 
       <form style={styles.form} onSubmit={handleSubmit(onSubmit)} noValidate>
