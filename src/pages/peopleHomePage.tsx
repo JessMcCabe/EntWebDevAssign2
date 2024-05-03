@@ -8,7 +8,7 @@ import PersonFilterUI, {
 } from "../components/peopleFilterUI";
 import { DiscoverPeople } from "../types/interfaces";
 import { BasePerson } from "../types/interfaces";
-import { useQuery } from "react-query";
+import { keepPreviousData,useQuery } from "@tanstack/react-query";
 import Spinner from "../components/spinner";
 import AddToFavouritesIcon from '../components/cardIcons/addToFavouritePerson'
 
@@ -21,13 +21,24 @@ const nameFiltering = {
 
 
 const PeopleHomePage = (props: any) => {
-  const { data, error, isLoading, isError } = useQuery<DiscoverPeople, Error>("people", getActors);
+  //const { data, error, isLoading, isError } = useQuery<DiscoverPeople, Error>("people", getActors);
+
+  const [page, setPage] = React.useState(1)
+  
+  const { isPending, isError, error, data, isFetching, isPlaceholderData } =
+  useQuery({
+    queryKey: ['people', page],
+    queryFn: () => getActors(page),
+    placeholderData: keepPreviousData,
+  })
+
+
   const { filterValues, setFilterValues, filterFunction } = useFiltering(
     [],
     [nameFiltering]
   );
 
-  if (isLoading) {
+  if (isFetching) {
     return <Spinner />;
   }
 
@@ -52,6 +63,13 @@ const PeopleHomePage = (props: any) => {
   
   return (
     <>
+    <div>
+    {isPending ? (
+        <div>Loading...</div>
+      ) : isError ? (
+        <div>Error: {error}</div>
+      ) : (
+        <div>
       <PageTemplate
         title="Discover People"
         people={displayedPeople}
@@ -59,6 +77,30 @@ const PeopleHomePage = (props: any) => {
           return <AddToFavouritesIcon {...people} />
         }}
       />
+       </div>
+      )}
+      <span>Current Page: {page}</span>
+      <button
+        onClick={() => setPage((old) => Math.max(old - 1, 0))}
+        disabled={page === 1}
+      >
+        Previous Page
+      </button>{' '}
+      <button
+        onClick={() => {
+          //if (!isPlaceholderData && data.hasMore) {
+            setPage((old) => old + 1)
+         // }
+        }}
+        // Disable the Next Page button until we know a next page is available
+        disabled={page ===data?.total_pages}
+      >
+        Next Page
+      </button>
+      {isFetching ? <span> Loading...</span> : null}{' '}
+      
+    </div>
+      
       <PersonFilterUI
         onFilterValuesChange={changeFilterValues}
         nameFilter={filterValues[0].value}
