@@ -5,7 +5,7 @@ import ImageList from "@mui/material/ImageList";
 import ImageListItem from "@mui/material/ImageListItem";
 import { getMovieImages } from "../../api/tmdb-api";
 import { MovieImage, MovieT } from "../../types/interfaces";
-import { useQuery } from "react-query";
+import { keepPreviousData,useQuery } from "@tanstack/react-query";
 import Spinner from '../spinner';
 
 
@@ -29,12 +29,23 @@ interface TemplateMoviePageProps {
 
 const TemplateMoviePage: React.FC<TemplateMoviePageProps> = (props) => {
     const { movie, children } = props;
-    const { data, error, isLoading, isError } = useQuery<MovieImage[], Error>(
+    /*const { data, error, isLoading, isError } = useQuery<MovieImage[], Error>(
         ["images", movie.id],
         () => getMovieImages(movie.id)
-    );
+    );*/
 
-    if (isLoading) {
+
+    const [page, setPage] = React.useState(1)
+  
+    const { isPending, isError, error, data, isFetching, isPlaceholderData } =
+    useQuery({
+      queryKey: ['images', movie.id],
+      queryFn: () =>getMovieImages(movie.id),
+      placeholderData: keepPreviousData,
+    })
+
+
+    if (isFetching) {
         return <Spinner />;
     }
 

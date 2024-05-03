@@ -5,17 +5,27 @@ import { MovieT} from "../types/interfaces";
 import PageTemplate from "../components/templateMoviePage";
 //import useMovie from "../hooks/useMovie";
 import { getMovie } from '../api/tmdb-api'
-import { useQuery } from "react-query";
+import { keepPreviousData,useQuery } from "@tanstack/react-query";
 import Spinner from '../components/spinner'
 
 const MovieDetailsPage: React.FC = () => {
   const { id } = useParams();
-  const { data: movie, error, isLoading, isError } = useQuery<MovieT, Error>(
+  /*const { data: movie, error, isLoading, isError } = useQuery<MovieT, Error>(
     ["movie", id],
     ()=> getMovie(id||"")
-  );
+  );*/
 
-  if (isLoading) {
+
+  const [page, setPage] = React.useState(1)
+  
+  const { isPending, isError, error, data: movie, isFetching, isPlaceholderData } =
+  useQuery({
+    queryKey: ['movie', id],
+    queryFn: () => getMovie(id||""),
+   
+  })
+
+  if (isFetching) {
     return <Spinner />;
   }
 
