@@ -137,9 +137,9 @@ export const getTVShow = (id: string) => {
  });
 };
 
-export const getTVShowsAiringToday = () => {
+export const getTVShowsAiringToday = (page=0) => {
   return fetch(
-    `https://api.themoviedb.org/3/tv/airing_today?api_key=${import.meta.env.VITE_TMDB_KEY}&language=en-US&page=1`
+    `https://api.themoviedb.org/3/tv/airing_today?api_key=${import.meta.env.VITE_TMDB_KEY}&language=en-US&page=${page}`
   )
   .then((response) => {
     
