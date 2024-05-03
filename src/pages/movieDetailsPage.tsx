@@ -22,7 +22,7 @@ const MovieDetailsPage: React.FC = () => {
   useQuery({
     queryKey: ['movie', id],
     queryFn: () => getMovie(id||""),
-   
+    placeholderData: keepPreviousData,
   })
 
   if (isFetching) {
