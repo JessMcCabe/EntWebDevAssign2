@@ -14,7 +14,7 @@ import { getGenresTV } from "../../api/tmdb-api";
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
 
-import { useQuery } from "react-query";
+import { keepPreviousData,useQuery } from "@tanstack/react-query";
 import Spinner from '../spinner'
 
 const styles = {
@@ -36,9 +36,15 @@ interface FilterTVShowsCardProps {
   genreFilter: string;
 }
 const FilterTVShowsCard: React.FC<FilterTVShowsCardProps> = (props) => {
-  const { data, error, isLoading, isError } = useQuery<GenreData, Error>("genres", getGenresTV);
+  //const { data, error, isLoading, isError } = useQuery<GenreData, Error>("genres", getGenresTV);
+  const { isPending, isError, error, data, isFetching, isPlaceholderData } =
+  useQuery({
+    queryKey: ['genresTV'],
+    queryFn: () => getGenresTV(),
+    placeholderData: keepPreviousData,
+  })
 
-  if (isLoading) {
+  if (isFetching) {
     return <Spinner />;
   }
   if (isError) {
