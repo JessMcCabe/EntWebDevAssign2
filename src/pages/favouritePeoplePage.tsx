@@ -1,7 +1,7 @@
 import React, { useContext } from "react"
 import PageTemplate from "../components/templatePeopleListPage";
 import { PeopleContext } from "../contexts/peopleContext";
-import { useQueries } from "react-query";
+import { keepPreviousData,useQueries } from "@tanstack/react-query";
 import { getPerson } from "../api/tmdb-api";
 import Spinner from "../components/spinner";
 import useFiltering from "../hooks/useFiltering";
@@ -28,14 +28,26 @@ const FavouritePeoplePage: React.FC = () => {
   );
 
   // Create an array of queries and run them in parallel.
-  const favouritePeopleQueries = useQueries(
+ /* const favouritePeopleQueries = useQueries(
     peopleIds.map((peopleId) => {
       return {
         queryKey: ["people", peopleId ],
         queryFn: () => getPerson(peopleId.toString()),
       };
     })
-  );
+  );*/
+
+  const favouritePeopleQueries = useQueries({
+    queries: peopleIds.map((peopleId) => ({
+      queryKey: ['people', peopleId],
+      queryFn: () => getPerson(peopleId.toString()),
+      staleTime: Infinity,
+    })),
+  })
+
+
+
+
    // Check if any of the parallel queries is still loading.
    const isLoading = favouritePeopleQueries.find((m) => m.isLoading === true);
 
