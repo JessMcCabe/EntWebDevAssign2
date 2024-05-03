@@ -8,7 +8,7 @@ import MovieFilterUI, {
 } from "../components/movieFilterUI";
 import { DiscoverMovies } from "../types/interfaces";
 import { ListedMovie } from "../types/interfaces";
-import { useQuery } from "react-query";
+import { keepPreviousData,useQuery } from "@tanstack/react-query";
 import Spinner from "../components/spinner";
 import AddToFavouritesIcon from '../components/cardIcons/addToFavourites'
 
@@ -25,13 +25,25 @@ const genreFiltering = {
 };
 
 const HomePage = (props: any) => {
-  const { data, error, isLoading, isError } = useQuery<DiscoverMovies, Error>("discover", getMovies);
+  //const { data, error, isLoading, isError } = useQuery<DiscoverMovies, Error>("discover", getMovies);
+  const [page, setPage] = React.useState(1)
+  
+  const { isPending, isError, error, data, isFetching, isPlaceholderData } =
+  useQuery({
+    queryKey: ['discover', page],
+    queryFn: () => getMovies(page),
+    placeholderData: keepPreviousData,
+  })
   const { filterValues, setFilterValues, filterFunction } = useFiltering(
     [],
     [titleFiltering, genreFiltering]
   );
 
-  if (isLoading) {
+  console.log("My page is set to" );
+
+  console.log(page );
+
+  if (isPending) {
     return <Spinner />;
   }
 
@@ -50,12 +62,20 @@ const HomePage = (props: any) => {
   };
 
   const movies = data ? data.results : [];
+  
   const displayedMovies = filterFunction(movies);
 
 
   
   return (
     <>
+    <div>
+    {isPending ? (
+        <div>Loading...</div>
+      ) : isError ? (
+        <div>Error: {error}</div>
+      ) : (
+        <div>
       <PageTemplate
         title="Discover Movies"
         movies={displayedMovies}
@@ -63,11 +83,36 @@ const HomePage = (props: any) => {
           return <AddToFavouritesIcon {...movie} />
         }}
       />
+      </div>
+      )}
+      <span>Current Page: {page}</span>
+      <button
+        onClick={() => setPage((old) => Math.max(old - 1, 0))}
+        disabled={page === 1}
+      >
+        Previous Page
+      </button>{' '}
+      <button
+        onClick={() => {
+          //if (!isPlaceholderData && data.hasMore) {
+            setPage((old) => old + 1)
+         // }
+        }}
+        // Disable the Next Page button until we know a next page is available
+        disabled={page ===data?.total_pages}
+      >
+        Next Page
+      </button>
+      {isFetching ? <span> Loading...</span> : null}{' '}
+      
+    </div>
+      
       <MovieFilterUI
         onFilterValuesChange={changeFilterValues}
         titleFilter={filterValues[0].value}
         genreFilter={filterValues[1].value}
       />
+      
     </>
   );
 };

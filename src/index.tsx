@@ -21,8 +21,8 @@ import MovieSearchResults from "./pages/movieSearchResults";
 import MovieReviewPage from "./pages/movieReviewPage";
 import SiteHeader from './components/siteHeader'
 import PeopleDetailPage from "./pages/peopleDetailPage";
-import { QueryClientProvider, QueryClient } from "react-query";
-import { ReactQueryDevtools } from 'react-query/devtools';
+import { QueryClientProvider, QueryClient } from "@tanstack/react-query";
+import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import MoviesContextProvider from "./contexts/moviesContext";
 import PeopleContextProvider from "./contexts/peopleContext";
 import AddMovieTVShowPage from './pages/addTVShowReviewPage'
