@@ -44,6 +44,10 @@ const queryClient = new QueryClient({
   },
 });
 
+queryClient.setQueryDefaults(['searchPerson'], { refetchOnMount: "always" })
+queryClient.setQueryDefaults(['searchMovie'], { refetchOnMount: "always" })
+queryClient.setQueryDefaults(['searchTVShow'], { refetchOnMount: "always" })
+
 const App = () => {
   return (
     <QueryClientProvider client={queryClient}>

@@ -22,7 +22,7 @@ const nameFiltering = {
 
 const PersonSearchResultsPage :  React.FC = () => {
   const { query } = useParams();
-  console.log("Query is in serach page:");
+  console.log("Query is in search page:");
   console.log(query);
   //const { data, error, isLoading, isError } = useQuery<DiscoverPeople, Error>(["searchPerson", query],
   //()=> getPersonSearch(query||""));
