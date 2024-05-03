@@ -5,7 +5,7 @@ import ImageList from "@mui/material/ImageList";
 import ImageListItem from "@mui/material/ImageListItem";
 import { getPersonImages } from "../../api/tmdb-api";
 import { PeopleImage, PersonT } from "../../types/interfaces";
-import { useQuery } from "react-query";
+import { keepPreviousData,useQuery } from "@tanstack/react-query";
 import Spinner from '../spinner';
 
 
@@ -29,12 +29,22 @@ interface TemplatePeoplePageProps {
 
 const TemplatePeoplePage: React.FC<TemplatePeoplePageProps> = (props) => {
     const { person, children } = props;
-    const { data, error, isLoading, isError } = useQuery<PeopleImage[], Error>(
+  /*  const { data, error, isLoading, isError } = useQuery<PeopleImage[], Error>(
         ["images", person.id],
         () => getPersonImages(person.id)
-    );
+    );*/
 
-    if (isLoading) {
+
+    const [page, setPage] = React.useState(1)
+  
+    const { isPending, isError, error, data, isFetching, isPlaceholderData } =
+    useQuery({
+      queryKey: ['images', person.id],
+      queryFn: () =>getPersonImages(person.id),
+      placeholderData: keepPreviousData,
+    })
+
+    if (isFetching) {
         return <Spinner />;
     }
 

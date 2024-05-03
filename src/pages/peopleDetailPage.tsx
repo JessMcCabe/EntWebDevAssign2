@@ -4,20 +4,30 @@ import PeopleDetails from "../components/peopleDetails";
 import { PersonT} from "../types/interfaces";
 import PageTemplate from "../components/templatePeoplePage";
 import { getPerson } from '../api/tmdb-api'
-import { useQuery } from "react-query";
+import { keepPreviousData,useQuery } from "@tanstack/react-query";
 import Spinner from '../components/spinner'
 
 
 const PeopleDetailsPage: React.FC = () => {
   const { id } = useParams();
-  const { data: person, error, isLoading, isError } = useQuery<PersonT, Error>(
+ /* const { data: person, error, isLoading, isError } = useQuery<PersonT, Error>(
     ["person", id],
     ()=> getPerson(id||"")
-  );
+  );*/
+
+  const [page, setPage] = React.useState(1)
+  
+  const { isPending, isError, error, data: person, isFetching, isPlaceholderData } =
+  useQuery({
+    queryKey: ['person', id],
+    queryFn: () => getPerson(id||""),
+    placeholderData: keepPreviousData,
+  })
+
 
   
 
-  if (isLoading) {
+  if (isFetching) {
     return <Spinner />;
   }
 
