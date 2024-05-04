@@ -1,7 +1,7 @@
 import React, { useContext } from "react"
 import PageTemplate from "../components/templateMovieListPage";
 import { MoviesContext } from "../contexts/moviesContext";
-import { keepPreviousData,useQueries } from "@tanstack/react-query";
+import { useQueries } from "@tanstack/react-query";
 import { getMovie } from "../api/tmdb-api";
 import Spinner from "../components/spinner";
 import useFiltering from "../hooks/useFiltering";
@@ -33,7 +33,7 @@ export const genreFiltering = {
 const PlayListMoviesPage: React.FC = () => {
   const { playList: movieIds } = useContext(MoviesContext);
   const { filterValues, setFilterValues, filterFunction } = useFiltering(
-    [],
+ 
     [titleFiltering, genreFiltering]
   );
 

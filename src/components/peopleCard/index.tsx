@@ -7,7 +7,7 @@ import CardHeader from "@mui/material/CardHeader";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import FavoriteIcon from "@mui/icons-material/Favorite";
-import CalendarIcon from "@mui/icons-material/CalendarTodayTwoTone";
+//import CalendarIcon from "@mui/icons-material/CalendarTodayTwoTone";
 import StarRateIcon from "@mui/icons-material/StarRate";
 import Grid from "@mui/material/Grid";
 import img from '../../images/film-poster-placeholder.png';
@@ -38,7 +38,7 @@ interface PeopleListProps {
 
 const PersonCard: React.FC<PeopleListProps> = (props) => {
   const person = {...props.person, favourite: false};
-  const { favourites, addToFavourites } = useContext(PeopleContext);
+  const { favourites } = useContext(PeopleContext);
   
   if (favourites.find((id) => id === person.id)) 
     person.favourite = true;

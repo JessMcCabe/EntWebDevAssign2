@@ -16,9 +16,9 @@ const MovieDetailsPage: React.FC = () => {
   );*/
 
 
-  const [page, setPage] = React.useState(1)
+  //const [page, setPage] = React.useState(1)
   
-  const { isPending, isError, error, data: movie, isFetching, isPlaceholderData } =
+  const {  isError, error, data: movie, isFetching} =
   useQuery({
     queryKey: ['movie', id],
     queryFn: () => getMovie(id||""),

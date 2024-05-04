@@ -1,7 +1,7 @@
 import React, { useContext } from "react"
 import PageTemplate from "../components/templateTVShowListPage";
 import { TVShowContext } from "../contexts/tvShowsContext";
-import { keepPreviousData,useQueries } from "@tanstack/react-query";
+import { useQueries } from "@tanstack/react-query";
 import { getTVShow } from "../api/tmdb-api";
 import Spinner from "../components/spinner";
 import useFiltering from "../hooks/useFiltering";
@@ -33,7 +33,7 @@ export const genreFiltering = {
 const FavouriteTVShowsPage: React.FC = () => {
   const { favourites: tvShowIds } = useContext(TVShowContext);
   const { filterValues, setFilterValues, filterFunction } = useFiltering(
-    [],
+   
     [nameFiltering, genreFiltering]
   );
 

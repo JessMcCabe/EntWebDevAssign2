@@ -6,7 +6,7 @@ import TVShowFilterUI, {
   nameFilter,
   genreFilter,
 } from "../components/tvShowFilterUI";
-import { DiscoverPersonTVShows,PersonT } from "../types/interfaces";
+import { PersonT } from "../types/interfaces";
 import { BaseTVShow } from "../types/interfaces";
 import { keepPreviousData,useQuery } from "@tanstack/react-query";
 import Spinner from "../components/spinner";
@@ -29,7 +29,7 @@ const PersonTVShowsPage :  React.FC = () => {
   /*const { data, error, isLoading, isError } = useQuery<DiscoverPersonTVShows, Error>(["tvShowPerson", id],
   ()=> getTVShowsForPerson(id||""));*/
   const { filterValues, setFilterValues, filterFunction } = useFiltering(
-    [],
+  
     [nameFiltering, genreFiltering]
   );
  /* const { data :personData, error: personError, isLoading: personIsLoading, isError:personIsError } = useQuery<PersonT, Error>(["personDetailsTV", id],
@@ -40,7 +40,7 @@ const PersonTVShowsPage :  React.FC = () => {
 const [page, setPage] = React.useState(1)
 
 
-const { isPending, isError, error, data, isFetching, isPlaceholderData } =
+const { isPending, isError, error, data, isFetching } =
   useQuery({
     queryKey: ['tvShowPerson', page],
     queryFn: () => getTVShowsForPerson(id||"",page),
@@ -49,7 +49,7 @@ const { isPending, isError, error, data, isFetching, isPlaceholderData } =
 
 
 
-  const { isPending: personIsPending, isError: isPersonError, error : personError, data :personData, isFetching: personIsFetching, isPlaceholderData :personPlacheHolderDate } =
+  const {  isError: isPersonError, error : personError, data :personData, isFetching: personIsFetching} =
   useQuery({
     queryKey: ['personDetails'],
     queryFn: () => getPerson(id||""),
@@ -107,7 +107,7 @@ const { isPending, isError, error, data, isFetching, isPlaceholderData } =
         title={name }
         tvShows={displayedTVShows}
         action={(tvshow: BaseTVShow) => {
-          return <AddToFavouritesIcon {...tvshow} />
+          return <AddToFavouritesIcon genres={[]} {...tvshow} />
         }}
       />
       </div>

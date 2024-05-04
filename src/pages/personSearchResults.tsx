@@ -41,7 +41,7 @@ const PersonSearchResultsPage :  React.FC = () => {
 
 
   const { filterValues, setFilterValues, filterFunction } = useFiltering(
-    [],
+ 
     [nameFiltering]
   );
   

@@ -15,9 +15,9 @@ const TVShowDetailsPage: React.FC = () => {
   );*/
 
 
-  const [page, setPage] = React.useState(1)
+  //const [page, setPage] = React.useState(1)
   
-  const { isPending, isError, error, data: tvShow, isFetching, isPlaceholderData } =
+  const {  isError, error, data: tvShow, isFetching } =
   useQuery({
     queryKey: ['tvShow', id],
     queryFn: () => getTVShow(id||""),

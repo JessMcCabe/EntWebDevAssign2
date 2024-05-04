@@ -2,7 +2,7 @@ import React from "react";
 import PageTemplate from "../components/templateMovieListPage";
 import { getUpcomingMovies } from "../api/tmdb-api";
 import useFiltering from "../hooks/useFiltering";
-import {UpcomingMovies} from "../types/interfaces";
+//import {UpcomingMovies} from "../types/interfaces";
 import {ListedMovie} from "../types/interfaces";
 import MovieFilterUI, {
   titleFilter,
@@ -28,14 +28,14 @@ const UpcomingMoviesPage = () => {
   //const { data, error, isLoading, isError } = useQuery<UpcomingMovies, Error>("upcoming", getUpcomingMovies);
   const [page, setPage] = React.useState(1)
   
-  const { isPending, isError, error, data, isFetching, isPlaceholderData } =
+  const { isPending, isError, error, data, isFetching } =
   useQuery({
     queryKey: ['upcoming', page],
     queryFn: () => getUpcomingMovies(page),
     placeholderData: keepPreviousData,
   })
   const { filterValues, setFilterValues, filterFunction } = useFiltering(
-    [],
+
     [titleFiltering, genreFiltering]
   );
 

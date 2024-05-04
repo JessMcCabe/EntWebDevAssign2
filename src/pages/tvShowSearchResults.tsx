@@ -44,7 +44,7 @@ const TVShowSearchResultsPage :  React.FC = () => {
 
 
   const { filterValues, setFilterValues, filterFunction } = useFiltering(
-    [],
+  
     [nameFiltering, genreFiltering]
   );
   
@@ -87,7 +87,7 @@ console.log(query);
         title={name }
         tvShows={displayedTVShows}
         action={(tvshow: BaseTVShow) => {
-          return <AddToFavouritesIcon {...tvshow} />
+          return <AddToFavouritesIcon genres={[]} {...tvshow} />
         }}
       />
       </div>

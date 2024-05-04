@@ -1,6 +1,10 @@
 export default {
   "adult": false,
-  "gender": 2,
+  "gender": [
+    {id:2, 
+      name:"male"
+    }
+  ],
   "id": 18897,
   "known_for_department": "Acting",
   "name": "Jackie Chan",

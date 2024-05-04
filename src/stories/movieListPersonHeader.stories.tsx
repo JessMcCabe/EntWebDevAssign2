@@ -2,9 +2,9 @@ import type { Meta, StoryObj } from '@storybook/react';
 import MoviePersonHeader from "../components/headerPeopleMovie";
 import { MemoryRouter } from "react-router";
 import TVShowContextProvider from "../contexts/tvShowsContext";
-import React from 'react';
+//import React from 'react';
 import SamplePerson from "./sampleDataPeople";
-import PersonHeader from "../components/headerPeople";
+//import PersonHeader from "../components/headerPeople";
 
 const meta = {
     title: 'People/MovieListHeaderPerson',

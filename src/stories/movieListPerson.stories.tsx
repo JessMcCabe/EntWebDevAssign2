@@ -1,5 +1,5 @@
 
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta } from '@storybook/react';
 import MovieListPeople from "../components/movieListPeople";
 import SampleMovie from "./sampleData";
 import { MemoryRouter } from "react-router";

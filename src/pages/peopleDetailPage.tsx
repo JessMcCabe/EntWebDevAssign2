@@ -15,9 +15,9 @@ const PeopleDetailsPage: React.FC = () => {
     ()=> getPerson(id||"")
   );*/
 
-  const [page, setPage] = React.useState(1)
+  //const [page, setPage] = React.useState(1)
   
-  const { isPending, isError, error, data: person, isFetching, isPlaceholderData } =
+  const {  isError, error, data: person, isFetching } =
   useQuery({
     queryKey: ['person', id],
     queryFn: () => getPerson(id||""),

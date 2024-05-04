@@ -38,7 +38,7 @@ interface TVShowProps {
 
 const TVShowCard: React.FC<TVShowProps> = (props) => {
   const tvShow = {...props.tvShow, favourite: false};
-  const { favourites, addToFavourites } = useContext(TVShowContext);
+  const { favourites } = useContext(TVShowContext);
   
   if (favourites.find((id) => id === tvShow.id)) 
     tvShow.favourite = true;

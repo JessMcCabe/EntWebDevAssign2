@@ -9,14 +9,14 @@ import { MoviesContext } from "../../contexts/moviesContext";
 import { useNavigate } from "react-router-dom";
 import styles from "./styles";
 import ratings from "./ratingCategories";
-import { MovieT, Review } from "../../types/interfaces";
+import { ListedMovie, Review } from "../../types/interfaces";
 import Snackbar from "@mui/material/Snackbar";
 import Alert from "@mui/material/Alert";
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
 
 
-const ReviewForm: React.FC<MovieT> = (props) => {
+const ReviewForm: React.FC<ListedMovie> = (props) => {
   const defaultValues = {
     defaultValues: {
       author: "",

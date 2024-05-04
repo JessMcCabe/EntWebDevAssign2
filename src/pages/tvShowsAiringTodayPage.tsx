@@ -6,7 +6,7 @@ import TVShowFilterUI, {
   nameFilter,
   genreFilter,
 } from "../components/tvShowFilterUI";
-import { AiringTodayTVShows } from "../types/interfaces";
+//import { AiringTodayTVShows } from "../types/interfaces";
 import { BaseTVShow } from "../types/interfaces";
 import { keepPreviousData,useQuery } from "@tanstack/react-query";
 import Spinner from "../components/spinner";
@@ -24,7 +24,7 @@ const genreFiltering = {
   condition: genreFilter,
 };
 
-const TVShowsAiringToday = (props: any) => {
+const TVShowsAiringToday = () => {
  // const { data, error, isLoading, isError } = useQuery<AiringTodayTVShows, Error>("airing", getTVShowsAiringToday);
 
 
@@ -33,14 +33,14 @@ const TVShowsAiringToday = (props: any) => {
  const [page, setPage] = React.useState(1)
 
 
-  const { isPending, isError, error, data, isFetching, isPlaceholderData } =
+  const { isPending, isError, error, data, isFetching} =
   useQuery({
     queryKey: ['AiringTodayTVShows', page],
     queryFn: () => getTVShowsAiringToday(page),
     placeholderData: keepPreviousData,
   })
   const { filterValues, setFilterValues, filterFunction } = useFiltering(
-    [],
+  
     [nameFiltering, genreFiltering]
   );
 
@@ -80,7 +80,7 @@ const TVShowsAiringToday = (props: any) => {
         title="TV Shows Airing Today"
         tvShows={displayedTVShows}
         action={(tvshow: BaseTVShow) => {
-          return <AddToFavouritesIcon {...tvshow} />
+          return <AddToFavouritesIcon genres={[]} {...tvshow} />
         }}
       />
        </div>

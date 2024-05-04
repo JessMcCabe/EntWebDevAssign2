@@ -35,9 +35,9 @@ const TemplateMoviePage: React.FC<TemplateMoviePageProps> = (props) => {
     );*/
 
 
-    const [page, setPage] = React.useState(1)
+    //const [page, setPage] = React.useState(1)
   
-    const { isPending, isError, error, data, isFetching, isPlaceholderData } =
+    const {  isError, error, data, isFetching } =
     useQuery({
       queryKey: ['images', movie.id],
       queryFn: () =>getMovieImages(movie.id),

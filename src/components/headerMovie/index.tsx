@@ -1,4 +1,4 @@
-import React, { useState, useEffect, FC } from "react"; 
+import React from "react"; 
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import Paper from "@mui/material/Paper";
@@ -9,7 +9,7 @@ import { MovieT } from "../../types/interfaces";
 import Avatar from "@mui/material/Avatar";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import CardHeader from "@mui/material/CardHeader";
-import { ListedMovie } from "../../types//interfaces";
+//import { ListedMovie } from "../../types//interfaces";
 
 
 const styles = {

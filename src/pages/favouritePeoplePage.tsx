@@ -1,14 +1,14 @@
 import React, { useContext } from "react"
 import PageTemplate from "../components/templatePeopleListPage";
 import { PeopleContext } from "../contexts/peopleContext";
-import { keepPreviousData,useQueries } from "@tanstack/react-query";
+import { useQueries } from "@tanstack/react-query";
 import { getPerson } from "../api/tmdb-api";
 import Spinner from "../components/spinner";
 import useFiltering from "../hooks/useFiltering";
 import PeopleFilterUI, {
   nameFilter
 } from "../components/peopleFilterUI";
-import { PersonT } from "../types/interfaces";
+//import { PersonT } from "../types/interfaces";
 import RemoveFromFavourites from "../components/cardIcons/removeFromFavouritesPerson";
 
 
@@ -23,7 +23,7 @@ const nameFiltering = {
 const FavouritePeoplePage: React.FC = () => {
   const { favourites: peopleIds } = useContext(PeopleContext);
   const { filterValues, setFilterValues, filterFunction } = useFiltering(
-    [],
+ 
     [nameFiltering]
   );
 

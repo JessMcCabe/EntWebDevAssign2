@@ -1,18 +1,18 @@
-import React, { useState, useEffect, ChangeEvent } from "react";
-import { FilterOptionPerson, DiscoverPeople } from "../../types/interfaces"
+import React, {   ChangeEvent } from "react";
+import { FilterOptionPerson } from "../../types/interfaces"
 import { SelectChangeEvent } from "@mui/material";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import Typography from "@mui/material/Typography";
-import InputLabel from "@mui/material/InputLabel";
-import MenuItem from "@mui/material/MenuItem";
+//import InputLabel from "@mui/material/InputLabel";
+//import MenuItem from "@mui/material/MenuItem";
 import TextField from "@mui/material/TextField";
 import FilterAltIcon from '@mui/icons-material/FilterAlt';
 import SortIcon from '@mui/icons-material/Sort';
-import { getPersonFromName,getActors } from "../../api/tmdb-api";
+import { getActors } from "../../api/tmdb-api";
 
-import FormControl from "@mui/material/FormControl";
-import Select from "@mui/material/Select";
+//import FormControl from "@mui/material/FormControl";
+//import Select from "@mui/material/Select";
 import { keepPreviousData,useQuery } from "@tanstack/react-query";
 import Spinner from '../spinner'
 
@@ -36,8 +36,8 @@ interface FilterPersonCardProps {
 }
 const FilterPersonCard: React.FC<FilterPersonCardProps> = (props) => {
   //const { data, error, isLoading, isError } = useQuery<DiscoverPeople, Error>("people", getActors);
-  const [page, setPage] = React.useState(1)
-  const { isPending, isError, error, data, isFetching, isPlaceholderData } =
+  const [page, /*setPage*/] = React.useState(1)
+  const {  isError, error,  isFetching,  } =
   useQuery({
     queryKey: ['people',page],
     queryFn: () => getActors(page),

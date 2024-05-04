@@ -1,4 +1,4 @@
-import React, { useState, MouseEvent } from "react";
+import React, { useState } from "react";
 import AppBar from "@mui/material/AppBar";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
@@ -8,10 +8,10 @@ import { styled } from "@mui/material/styles";
 import MenuIcon from "@mui/icons-material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 import Menu from "@mui/material/Menu";
-import { useNavigate } from "react-router-dom";
-import { useTheme } from "@mui/material/styles";
+//import { useNavigate } from "react-router-dom";
+//import { useTheme } from "@mui/material/styles";
 import AccountCircle from '@mui/icons-material/AccountCircle';
-import useMediaQuery from "@mui/material/useMediaQuery";
+//import useMediaQuery from "@mui/material/useMediaQuery";
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import { NavLink } from 'react-router-dom'
 import Box from '@mui/material/Box';
@@ -58,9 +58,9 @@ const SiteHeader: React.FC = () => {
   const [auth, setAuth] = React.useState(true);
 
 
-  const theme =darkTheme
+  //const theme =darkTheme
 
-  const isMobile = useMediaQuery(theme.breakpoints.down("lg"));
+  //const isMobile = useMediaQuery(theme.breakpoints.down("lg"));
   const handleClickM1 = (event: React.MouseEvent<HTMLButtonElement>) => {
     setAnchorElM1(event.currentTarget);
   };

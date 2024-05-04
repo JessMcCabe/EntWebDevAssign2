@@ -35,9 +35,9 @@ const TemplatePeoplePage: React.FC<TemplatePeoplePageProps> = (props) => {
     );*/
 
 
-    const [page, setPage] = React.useState(1)
+    //const [page, setPage] = React.useState(1)
   
-    const { isPending, isError, error, data, isFetching, isPlaceholderData } =
+    const {  isError, error, data, isFetching } =
     useQuery({
       queryKey: ['images', person.id],
       queryFn: () =>getPersonImages(person.id),

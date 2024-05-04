@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { BasePerson , Review} from "../types/interfaces";
+import { BasePerson } from "../types/interfaces";
 
 interface PeopleContextInterface {
     favourites: number[];

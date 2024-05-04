@@ -6,7 +6,7 @@ import PersonFilterUI, {
   nameFilter
   
 } from "../components/peopleFilterUI";
-import { DiscoverPeople } from "../types/interfaces";
+//import { DiscoverPeople } from "../types/interfaces";
 import { BasePerson } from "../types/interfaces";
 import { keepPreviousData,useQuery } from "@tanstack/react-query";
 import Spinner from "../components/spinner";
@@ -20,12 +20,12 @@ const nameFiltering = {
 };
 
 
-const PeopleHomePage = (props: any) => {
+const PeopleHomePage = () => {
   //const { data, error, isLoading, isError } = useQuery<DiscoverPeople, Error>("people", getActors);
 
   const [page, setPage] = React.useState(1)
   
-  const { isPending, isError, error, data, isFetching, isPlaceholderData } =
+  const { isPending, isError, error, data, isFetching } =
   useQuery({
     queryKey: ['people', page],
     queryFn: () => getActors(page),
@@ -34,7 +34,7 @@ const PeopleHomePage = (props: any) => {
 
 
   const { filterValues, setFilterValues, filterFunction } = useFiltering(
-    [],
+    
     [nameFiltering]
   );
 

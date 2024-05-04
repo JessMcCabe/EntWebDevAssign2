@@ -70,6 +70,8 @@ export interface Review{
 
 
 export interface GenreData {
+  id: Key | null | undefined;
+  name: ReactNode;
   genres: {
     id: string;
     name: string;

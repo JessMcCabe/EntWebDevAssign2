@@ -6,7 +6,7 @@ import MovieFilterUI, {
   titleFilter,
   genreFilter,
 } from "../components/movieFilterUI";
-import { DiscoverMovies } from "../types/interfaces";
+//import { DiscoverMovies } from "../types/interfaces";
 import { ListedMovie } from "../types/interfaces";
 import { keepPreviousData,useQuery } from "@tanstack/react-query";
 import Spinner from "../components/spinner";
@@ -24,18 +24,18 @@ const genreFiltering = {
   condition: genreFilter,
 };
 
-const HomePage = (props: any) => {
+const HomePage = () => {
   //const { data, error, isLoading, isError } = useQuery<DiscoverMovies, Error>("discover", getMovies);
   const [page, setPage] = React.useState(1)
   
-  const { isPending, isError, error, data, isFetching, isPlaceholderData } =
+  const { isPending, isError, error, data, isFetching } =
   useQuery({
     queryKey: ['discover', page],
     queryFn: () => getMovies(page),
     placeholderData: keepPreviousData,
   })
   const { filterValues, setFilterValues, filterFunction } = useFiltering(
-    [],
+ 
     [titleFiltering, genreFiltering]
   );
 

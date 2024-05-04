@@ -6,7 +6,7 @@ import TVShowFilterUI, {
   nameFilter,
   genreFilter,
 } from "../components/tvShowFilterUI";
-import { DiscoverTVShows } from "../types/interfaces";
+//import { DiscoverTVShows } from "../types/interfaces";
 import { BaseTVShow } from "../types/interfaces";
 import { keepPreviousData,useQuery } from "@tanstack/react-query";
 import Spinner from "../components/spinner";
@@ -24,20 +24,20 @@ const genreFiltering = {
   condition: genreFilter,
 };
 
-const HomePage = (props: any) => {
+const HomePage = () => {
   //const { data, error, isLoading, isError } = useQuery<DiscoverTVShows, Error>("tvhome", getTVShows);
 
   const [page, setPage] = React.useState(1)
 
 
-  const { isPending, isError, error, data, isFetching, isPlaceholderData } =
+  const { isPending, isError, error, data, isFetching} =
   useQuery({
     queryKey: ['tvhome', page],
     queryFn: () => getTVShows(page),
     placeholderData: keepPreviousData,
   })
   const { filterValues, setFilterValues, filterFunction } = useFiltering(
-    [],
+ 
     [nameFiltering, genreFiltering]
   );
 
@@ -77,7 +77,7 @@ const HomePage = (props: any) => {
         title="Discover TV Shows"
         tvShows={displayedTVShows}
         action={(tvshow: BaseTVShow) => {
-          return <AddToFavouritesIcon {...tvshow} />
+          return <AddToFavouritesIcon genres={[]} {...tvshow} />
         }}
       />
        </div>

@@ -6,7 +6,7 @@ import MovieFilterUI, {
   titleFilter,
   genreFilter,
 } from "../components/movieFilterUI";
-import { DiscoverPersonMovies, PersonT } from "../types/interfaces";
+import {  PersonT } from "../types/interfaces";
 import { ListedMovie } from "../types/interfaces";
 import { keepPreviousData,useQuery } from "@tanstack/react-query";
 import Spinner from "../components/spinner";
@@ -37,7 +37,7 @@ const { data :personData, error: personError, isLoading: personIsLoading, isErro
 const [page, setPage] = React.useState(1)
 
 
-const { isPending, isError, error, data, isFetching, isPlaceholderData } =
+const { isPending, isError, error, data, isFetching } =
   useQuery({
     queryKey: ['moviePerson', page],
     queryFn: () => getMoviesForPerson(id||"",page),
@@ -46,7 +46,7 @@ const { isPending, isError, error, data, isFetching, isPlaceholderData } =
 
 
 
-  const { isPending: personIsPending, isError: isPersonError, error : personError, data :personData, isFetching: personIsFetching, isPlaceholderData :personPlacheHolderDate } =
+  const {  isError: isPersonError, error : personError, data :personData, isFetching: personIsFetching } =
   useQuery({
     queryKey: ['personDetails'],
     queryFn: () => getPerson(id||""),
@@ -55,7 +55,7 @@ const { isPending, isError, error, data, isFetching, isPlaceholderData } =
 
 
 const { filterValues, setFilterValues, filterFunction } = useFiltering(
-  [],
+
   [titleFiltering, genreFiltering]
 );
   

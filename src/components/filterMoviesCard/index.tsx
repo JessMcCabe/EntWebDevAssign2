@@ -1,4 +1,4 @@
-import React, { useState, useEffect, ChangeEvent } from "react";
+import React, { ChangeEvent } from "react";
 import { FilterOption } from "../../types/interfaces"
 import { SelectChangeEvent } from "@mui/material";
 import Card from "@mui/material/Card";
@@ -38,7 +38,7 @@ interface FilterMoviesCardProps {
 const FilterMoviesCard: React.FC<FilterMoviesCardProps> = (props) => {
   //const { data, error, isLoading, isError } = useQuery<GenreData, Error>("genres", getGenres);
 
-  const { isPending, isError, error, data, isFetching, isPlaceholderData } =
+  const {  isError, error, data, isFetching } =
   useQuery({
     queryKey: ['genres'],
     queryFn: () => getGenres(),
@@ -94,7 +94,7 @@ const FilterMoviesCard: React.FC<FilterMoviesCardProps> = (props) => {
       value={props.genreFilter}
       onChange={handleGenreChange}
     >
-            {genres.map((genre) => {
+            {genres.map((genre :GenreData) => {
               return (
                 <MenuItem key={genre.id} value={genre.id}>
                   {genre.name}

@@ -1,5 +1,5 @@
-import React, { useState, useEffect, ChangeEvent } from "react";
-import { FilterOptionTVShow, GenreData } from "../../types/interfaces"
+import React, { ChangeEvent } from "react";
+import { FilterOptionTVShow,GenreData } from "../../types/interfaces"
 import { SelectChangeEvent } from "@mui/material";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
@@ -37,7 +37,7 @@ interface FilterTVShowsCardProps {
 }
 const FilterTVShowsCard: React.FC<FilterTVShowsCardProps> = (props) => {
   //const { data, error, isLoading, isError } = useQuery<GenreData, Error>("genres", getGenresTV);
-  const { isPending, isError, error, data, isFetching, isPlaceholderData } =
+  const {  isError, error, data , isFetching } =
   useQuery({
     queryKey: ['genresTV'],
     queryFn: () => getGenresTV(),
@@ -50,7 +50,7 @@ const FilterTVShowsCard: React.FC<FilterTVShowsCardProps> = (props) => {
   if (isError) {
     return <h1>{(error as Error).message}</h1>;
   }
-  const genres = data?.genres || [];
+  const genres  = data?.genres || [];
   if (genres[0].name !== "All") {
     genres.unshift({ id: "0", name: "All" });
   }
@@ -93,7 +93,7 @@ const FilterTVShowsCard: React.FC<FilterTVShowsCardProps> = (props) => {
       value={props.genreFilter}
       onChange={handleGenreChange}
     >
-            {genres.map((genre) => {
+            {genres.map((genre: GenreData) => {
               return (
                 <MenuItem key={genre.id} value={genre.id}>
                   {genre.name}
