@@ -1,6 +1,6 @@
 import React from "react";
 import ReactDOM from 'react-dom/client'
-import { BrowserRouter, Route, Navigate, Routes, Link } from "react-router-dom";
+import { BrowserRouter, Route, Navigate, Routes } from "react-router-dom";
 import HomePage from "./pages/homePage";
 import PeopleHomePage from "./pages/peopleHomePage";
 import MoviePage from "./pages/movieDetailsPage";

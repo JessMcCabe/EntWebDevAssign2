@@ -6,7 +6,7 @@ import TVShowFilterUI, {
   nameFilter,
   genreFilter,
 } from "../components/tvShowFilterUI";
-import { DiscoverTVShows } from "../types/interfaces";
+//import { DiscoverTVShows } from "../types/interfaces";
 import { BaseTVShow } from "../types/interfaces";
 import { keepPreviousData,useQuery } from "@tanstack/react-query";
 import Spinner from "../components/spinner";
@@ -35,7 +35,7 @@ const TVShowSearchResultsPage :  React.FC = () => {
 
   const [page, setPage] = React.useState(1)
   
-  const { isPending, isError, error, data, isFetching, isPlaceholderData } =
+  const { isPending, isError, error, data, isFetching } =
   useQuery({
     queryKey: ['searchTVShow', page],
     queryFn: () => getTVShowSearch(query||"", page),

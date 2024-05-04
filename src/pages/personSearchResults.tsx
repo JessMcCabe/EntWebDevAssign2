@@ -6,7 +6,7 @@ import TVShowFilterUI, {
   nameFilter,
   
 } from "../components/peopleFilterUI";
-import { DiscoverPeople } from "../types/interfaces";
+//import { DiscoverPeople } from "../types/interfaces";
 import { BasePerson } from "../types/interfaces";
 import { keepPreviousData,useQuery } from "@tanstack/react-query";
 import Spinner from "../components/spinner";
@@ -29,11 +29,12 @@ const PersonSearchResultsPage :  React.FC = () => {
 
   const [page, setPage] = React.useState(1)
   
-  const { isPending, isError, error, data, isFetching, isPlaceholderData } =
+  const { isPending, isError, error, data, isFetching } =
   useQuery({
     queryKey: ['searchPerson', page],
     queryFn: () => getPersonSearch(query||"", page),
     placeholderData: keepPreviousData,
+    
   })
 
 
