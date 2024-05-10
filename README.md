@@ -7,7 +7,6 @@ __Video demonstration:__ https://youtu.be/5ijgfjUws0Q
 This repository contains an implementation of the Movie Fans Web Application using the ReactJS library. 
 
 ### Features
-[ A bullet-point list of the __new features__ you added to the Movies Fan app (and any modifications to existing features) .]
 
 + Pagination 
 
@@ -45,13 +44,13 @@ Image area on the card clickable to bring user to the details page for movies, t
 
 ### Setup requirements.
 
-[ Outline any non-standard setup steps necessary to run your app locally after cloning the repo.]
+
 
 ### API endpoints
 
-[ List the __additional__ TMDB endpoints used, giving the description and pathname for each one.] 
 
-e.g.
+
+
 + Discover list of movies - discover/movie
 + Movie details - movie/:id
 + Movie genres - /genre/movie/list
@@ -78,13 +77,6 @@ e.g.
 
 
 ### Routing
-
-[ List the __new routes__ supported by your app and state the associated page.]
-
-+ /blogs - displays all published blogs.
-+ /blogs/:id - displays a particular blog.
-+ /blogs/:id/comments - detail view of a particular blog and its comments.
-+ etc.
 
 
 + /reviews/form - Form for writing a review for a movie
@@ -113,19 +105,17 @@ e.g.
 + /people/search/" - page to show a form to search for people
 + /people/search/:query/results" - page that shows a list of people from search results
 
-[If relevant, state what aspects of your app are protected (i.e. require authentication) and what is public.]
+
 
 ### Assignment 1 integration
 
-[Describe the level of  integration with the API developed in Assignment 1.]
+
 
 + Frontend and api are deployed via the one cdk but are not integrated.
 
 ### Independent learning (If relevant)
 
-Itemize the technologies/techniques you researched independently and adopted in your project, 
-i.e. aspects not covered in the lectures/labs. Include the source code filenames that illustrate these 
-(we do not require code excerpts) and provide references to the online resources that helped you (articles/blogs).
+
 
 +  Menu Item Navigation - https://stackoverflow.com/questions/47873566/how-navigate-using-the-menuitem-material-ui-v1
 +  Multiple UseQuery - https://community.apollographql.com/t/multiple-queries-in-a-single-component-with-usequery-hook/3825
